@@ -4,6 +4,18 @@
 <title>Topic 1 - Number and Algebra</title>
 
 <style>
+		/* Hide arrows in Chrome, Safari, Edge */
+input.no-arrows::-webkit-outer-spin-button,
+input.no-arrows::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Hide arrows in Firefox */
+input.no-arrows {
+    -moz-appearance: textfield;
+}
+
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f6f9;
@@ -81,7 +93,7 @@ button:hover {
   font-weight: bold;
 }
 
-</style>
+</style>	
 </head>
 
 <body>
@@ -109,8 +121,7 @@ button:hover {
 	  
 <p>The app calculates calories burned using C=480t<br>
 	(b) Where t is time in hours. Calculate the number of calories burned.</p>
-
-     <input type="number" id="q1b" step="1" class="no-arrows">
+     <input type="number" id="q1b" step="0.01" class="no-arrows">
   <button onclick="checkAnswer('q1b', 820, 'r1b')">Check</button>
   <span id="r1b"></span>
 </div>
