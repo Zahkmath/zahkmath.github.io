@@ -234,10 +234,7 @@ Find the final price.
 
 <div class="card">
 
-  <p>
-    <strong>Question 1</strong><br><br>
-
-    A café sells smoothies for $6 and sandwiches for $9.<br>
+  <p> 8) A café sells smoothies for $6 and sandwiches for $9.<br>
     On one day, 65 items were sold for a total of $495.<br><br>
 
     Let <em>s</em> be the number of smoothies and <em>w</em> the number of sandwiches.
@@ -245,18 +242,24 @@ Find the final price.
 
   <hr>
 
-  <p><strong>(a)</strong> Write down two equations to model the situation.</p>
+a)  Write down two equations to model the situation.</p>
 
   <!-- Equation 1 -->
   <div>
     <input type="text" id="q1a1" placeholder="First equation">
 <button onclick="checkEquation('q1a1', ['s+w=65','w+s=65'], 'r1a1')">Check</button>
 <span id="r1a1"></span>
+
+	  <input type="text" id="q1a2" placeholder="Second equation">
+<button onclick="checkEquation('q1a2',
+['6s+9w=495','9w+6s=495'],
+'r1a2')">Check</button>
+<span id="r1a2"></span>
   </div>
 
-  <hr>
+ <hr>
 
-  <p><strong>(b)</strong> Find the number of smoothies sold.</p>
+  <p> b) Find the number of smoothies sold.</p>
 
   <div>
     <input type="text" id="q1b" placeholder="Number of smoothies">
