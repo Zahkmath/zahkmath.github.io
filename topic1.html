@@ -1,180 +1,90 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Topic 1 - Number and Algebra</title>
+  <title>Topic 1 - ZAHK Math</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f4f6f9;
+    }
 
-<style>
-		/* Hide arrows in Chrome, Safari, Edge */
-input.no-arrows::-webkit-outer-spin-button,
-input.no-arrows::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
+    header {
+      background-color: #1e3a8a;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
 
-/* Hide arrows in Firefox */
-input.no-arrows {
-    -moz-appearance: textfield;
-}
+    header h1 {
+      margin: 0;
+      font-size: 32px;
+    }
 
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f6f9;
-  margin: 0;
-  padding: 0;
-}
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 40px;
+      max-width: 1000px;
+      margin: auto;
+    }
 
-header {
-  background-color: #1e3a8a;
-  color: white;
-  padding: 20px;
-  text-align: center;
-}
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: 0.3s;
+      cursor: pointer;
+    }
 
-.container {
-  max-width: 900px;
-  margin: 40px auto;
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  padding: 0 20px;
-}
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    }
 
-.card {
-  background: white;
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
+    .card a {
+      text-decoration: none;
+      color: #1e3a8a;
+      font-size: 18px;
+      font-weight: bold;
+      display: block;
+    }
 
-.card p {
-  font-size: 18px;
-  margin-bottom: 10px;
-}
+    .back {
+      text-align: center;
+      margin: 30px 0;
+    }
 
-input[type=number] {
-  padding: 8px;
-  width: 100px;
-  margin-right: 10px;
-}
-
-button {
-  padding: 8px 15px;
-  background-color: #1e3a8a;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #162b6d;
-}
-
-.correct {
-  color: green;
-  font-weight: bold;
-  margin-left: 10px;
-}
-
-.wrong {
-  color: red;
-  font-weight: bold;
-  margin-left: 10px;
-}
-
-.back {
-  text-align: center;
-  margin: 40px 0;
-}
-
-.back a {
-  text-decoration: none;
-  color: #555;
-  font-weight: bold;
-}
-
-</style>	
+    .back a {
+      text-decoration: none;
+      color: #555;
+      font-weight: bold;
+    }
+  </style>
 </head>
 
 <body>
+  <header>
+    <h1>Topic 1</h1>
+    <p>Select a Section</p>
+  </header>
 
-<header>
-  <h1>Topic 1 - Number and algebra</h1>
-</header>
-
-<div class="container">
-
-  <!-- QUESTION TEMPLATE -->
-  <div class="card">
-    <p>1) A train journey lasts 2 hours 36 minutes. Write the total time in hours.</p>
-    <input type="text" id="q1">
-    <button onclick="checkAnswer('q1',2.6, 'r1')">Check</button>
-    <span id="r1"></span>
+  <div class="container">
+    <div class="card"><a href="revision-checklist.html">Revision Check List</a></div>
+    <div class="card"><a href="revision-questions.html">Revision Check List Questions</a></div>
+    <div class="card"><a href="#">Link 3</a></div>
+    <div class="card"><a href="#">Link 4</a></div>
+    <div class="card"><a href="#">Link 5</a></div>
+    <div class="card"><a href="#">Link 6</a></div>
+    <div class="card"><a href="#">Link 7</a></div>
+    <div class="card"><a href="#">Link 8</a></div>
   </div>
 
-  <div class="card">
-    <p>2) A fitness app records that Maria ran for 1 hour 42 minutes 30 seconds.<br>
-	(a) Write the total time in hours.</p>
-<input type="number" id="q2a" step="0.01" class="no-arrows">
-  <button onclick="checkAnswer('q2a',1.71, 'r2a')">Check</button>
-  <span id="r2a"></span>
-	  
-<p>The app calculates calories burned using <i>C=480t</i>
-	Where <i>t</i> is time in hours.<br> (b) Calculate the number of calories burned.</p>
-     <input type="number" id="q2b" step="0.01" class="no-arrows">
-  <button onclick="checkAnswer('q2b', 820, 'r2b')">Check</button>
-  <span id="r2b"></span>
-</div>
-
-  <div class="card">
-    <p>3)A cyclist travels 3.08 km. Write this distance in metres. </p>
-  <input type="number" id="q3" step="0.01" class="no-arrows">
-  <button onclick="checkAnswer('q3',3080, 'r3')">Check</button>
-  <span id="r3"></span>
-</div>
-  <div class="card">
-    <p>4) A delivery drone travels 4.75 km.<br>
-a) Convert this distance into metres.
-</p>
-<input type="number" id="q4a" step="0.01" class="no-arrows">
-  <button onclick="checkAnswer('q4a',4750, 'r4a')">Check</button>
-  <span id="r4a"></span>
-		<p>
-b) The drone travels at 12 m/s.<br>
-Calculate the time taken in minutes.
-</p>
-     <input type="number" id="q4b" step="0.01" class="no-arrows">
-  <button onclick="checkAnswer('q4b', 396, 'r4b')">Check</button>
-  <span id="r4b"></span>
-</div>
-
-  <div class="card">
-    <p>5) [Your Question 5]</p>
-    <input type="text" id="q5">
-    <button onclick="checkAnswer('q5', [Answer5], 'r5')">Check</button>
-    <span id="r5"></span>
+  <div class="back">
+    <a href="sl-ai.html">⬅ Back to SL AI</a>
   </div>
-
-</div>
-
-<div class="back">
-  <a href="sl-ai.html">⬅ Back to SL AI</a>
-</div>
-
-<script>
-function checkAnswer(inputId, correctAnswer, resultId) {
-  var userAnswer = document.getElementById(inputId).value;
-  var result = document.getElementById(resultId);
-
-  if(userAnswer == correctAnswer) {
-    result.innerHTML = "✓";
-    result.className = "correct";
-  } else {
-    result.innerHTML = "✗";
-    result.className = "wrong";
-  }
-}
-</script>
-
 </body>
 </html>
