@@ -1,153 +1,90 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Topic 2 - [Functions]</title>
+  <title>Topic 2 - ZAHK Math</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f4f6f9;
+    }
 
-<style>
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f6f9;
-  margin: 0;
-  padding: 0;
-}
+    header {
+      background-color: #1e3a8a;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
 
-header {
-  background-color: #1e3a8a;
-  color: white;
-  padding: 20px;
-  text-align: center;
-}
+    header h1 {
+      margin: 0;
+      font-size: 32px;
+    }
 
-.container {
-  max-width: 900px;
-  margin: 40px auto;
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  padding: 0 20px;
-}
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 40px;
+      max-width: 1000px;
+      margin: auto;
+    }
 
-.card {
-  background: white;
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: 0.3s;
+      cursor: pointer;
+    }
 
-.card p {
-  font-size: 18px;
-  margin-bottom: 10px;
-}
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    }
 
-input[type=number] {
-  padding: 8px;
-  width: 100px;
-  margin-right: 10px;
-}
+    .card a {
+      text-decoration: none;
+      color: #1e3a8a;
+      font-size: 18px;
+      font-weight: bold;
+      display: block;
+    }
 
-button {
-  padding: 8px 15px;
-  background-color: #1e3a8a;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
+    .back {
+      text-align: center;
+      margin: 30px 0;
+    }
 
-button:hover {
-  background-color: #162b6d;
-}
-
-.correct {
-  color: green;
-  font-weight: bold;
-  margin-left: 10px;
-}
-
-.wrong {
-  color: red;
-  font-weight: bold;
-  margin-left: 10px;
-}
-
-.back {
-  text-align: center;
-  margin: 40px 0;
-}
-
-.back a {
-  text-decoration: none;
-  color: #555;
-  font-weight: bold;
-}
-
-</style>
+    .back a {
+      text-decoration: none;
+      color: #555;
+      font-weight: bold;
+    }
+  </style>
 </head>
 
 <body>
+  <header>
+    <h1>Topic 2</h1>
+    <p>Select a Section</p>
+  </header>
 
-<header>
-  <h1>Topic 2 - [Functions]</h1>
-</header>
-
-<div class="container">
-
-  <!-- QUESTION TEMPLATE -->
-  <div class="card">
-    <p>1) [Your Question 1]</p>
-    <input type="number" id="q1">
-    <button onclick="checkAnswer('q1', [Answer1], 'r1')">Check</button>
-    <span id="r1"></span>
+  <div class="container">
+    <div class="card"><a href="revision-checklist.html">Revision Checklist</a></div>
+    <div class="card"><a href="revision-questions.html">Revision Checklist Questions</a></div>
+    <div class="card"><a href="#">Link 3</a></div>
+    <div class="card"><a href="#">Link 4</a></div>
+    <div class="card"><a href="#">Link 5</a></div>
+    <div class="card"><a href="#">Link 6</a></div>
+    <div class="card"><a href="#">Link 7</a></div>
+    <div class="card"><a href="#">Link 8</a></div>
   </div>
 
-  <div class="card">
-    <p>2) [Your Question 2]</p>
-    <input type="number" id="q2">
-    <button onclick="checkAnswer('q2', [Answer2], 'r2')">Check</button>
-    <span id="r2"></span>
+  <div class="back">
+    <a href="sl-ai.html">⬅ Back to SL AI</a>
   </div>
-
-  <div class="card">
-    <p>3) [Your Question 3]</p>
-    <input type="number" id="q3">
-    <button onclick="checkAnswer('q3', [Answer3], 'r3')">Check</button>
-    <span id="r3"></span>
-  </div>
-
-  <div class="card">
-    <p>4) [Your Question 4]</p>
-    <input type="number" id="q4">
-    <button onclick="checkAnswer('q4', [Answer4], 'r4')">Check</button>
-    <span id="r4"></span>
-  </div>
-
-  <div class="card">
-    <p>5) [Your Question 5]</p>
-    <input type="number" id="q5">
-    <button onclick="checkAnswer('q5', [Answer5], 'r5')">Check</button>
-    <span id="r5"></span>
-  </div>
-
-</div>
-
-<div class="back">
-  <a href="sl-ai.html">⬅ Back to SL AI</a>
-</div>
-
-<script>
-function checkAnswer(inputId, correctAnswer, resultId) {
-  var userAnswer = document.getElementById(inputId).value;
-  var result = document.getElementById(resultId);
-
-  if(userAnswer == correctAnswer) {
-    result.innerHTML = "✓";
-    result.className = "correct";
-  } else {
-    result.innerHTML = "✗";
-    result.className = "wrong";
-  }
-}
-</script>
-
 </body>
 </html>
