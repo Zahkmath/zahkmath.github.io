@@ -102,14 +102,18 @@ button:hover {
 
   <div class="card">
     <p>2) A fitness app records that Maria ran for 1 hour 42 minutes 30 seconds.<br>
-	(a) Write the total time in hours.<br>
-The app calculates calories burned using C=480t<br>
-	(b) Where t is time in hours. Calculate the number of calories burned.<br>
-</p>
-    <input type="text" id="q2">
-    <button onclick="checkAnswer('q2', [Answer2], 'r2')">Check</button>
-    <span id="r2"></span>
-  </div>
+	(a) Write the total time in hours.</p>
+<input type="number" id="q1a" step="0.01" class="no-arrows">
+  <button onclick="checkAnswer('q1a',1.71, 'r1a')">Check</button>
+  <span id="r1a"></span>
+	  
+<p>The app calculates calories burned using C=480t<br>
+	(b) Where t is time in hours. Calculate the number of calories burned.</p>
+
+     <input type="number" id="q1b" step="1" class="no-arrows">
+  <button onclick="checkAnswer('q1b', 820, 'r1b')">Check</button>
+  <span id="r1b"></span>
+</div>
 
   <div class="card">
     <p>3) [Your Question 3]</p>
