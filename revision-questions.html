@@ -4,18 +4,49 @@
 <title>Revision Check List </title>
 
 <style>
-		/* Hide arrows in Chrome, Safari, Edge */
-input.no-arrows::-webkit-outer-spin-button,
-input.no-arrows::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+		
+<script>
+function normalizeExpression(expr) {
+  return expr
+    .replace(/\s+/g, '')      // remove spaces
+    .toLowerCase()            // lowercase
+    .replace(/−/g, '-')       // fix minus symbol
 }
 
-/* Hide arrows in Firefox */
-input.no-arrows {
-    -moz-appearance: textfield;
+function checkEquation(id, correctForms, resultId) {
+  let student = document.getElementById(id).value;
+  student = normalizeExpression(student);
+
+  let isCorrect = false;
+
+  for (let i = 0; i < correctForms.length; i++) {
+    if (student === normalizeExpression(correctForms[i])) {
+      isCorrect = true;
+      break;
+    }
+  }
+
+  if (isCorrect) {
+    document.getElementById(resultId).innerHTML = "✔️";
+    document.getElementById(resultId).style.color = "green";
+  } else {
+    document.getElementById(resultId).innerHTML = "❌";
+    document.getElementById(resultId).style.color = "red";
+  }
 }
 
+function checkNumber(id, correctAnswer, resultId) {
+  let student = document.getElementById(id).value.trim();
+
+  if (student == correctAnswer) {
+    document.getElementById(resultId).innerHTML = "✔️";
+    document.getElementById(resultId).style.color = "green";
+  } else {
+    document.getElementById(resultId).innerHTML = "❌";
+    document.getElementById(resultId).style.color = "red";
+  }
+}
+</script>
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f6f9;
@@ -187,19 +218,55 @@ Find the final price.
 
 a)Rewrite the formula without a negative index.
 </p>
-<input type="text" id="q7a">
-    <button onclick="checkAnswer('q7a',150/d^2, 'r7a')">Check</button>
-    <span id="r7a"></span>
+		 <input type="text" id="q7a" placeholder="Type your answer here">
+  <button onclick="checkAnswer('q7a', '150/d^2', 'r7a')">Check</button>
+  <span id="r7a"></span>
+
 		<p>
 b) Find the intensity when <i>d=3</i>.<br>
 Find the final price.
 </p>
-    <input type="text" id="q7b" placeholder="Type your answer here">
-  <button onclick="checkAnswer('q7b', '150/d^2', 'r7b')">Check</button>
-  <span id="r7b"></span>
+    <input type="text" id="q7b">
+    <button onclick="checkAnswer('q7b',16.7, 'r7b')">Check</button>
+    <span id="r7b"></span>
 </div>
 
 
+<div class="card">
+
+  <p>
+    <strong>Question 1</strong><br><br>
+
+    A café sells smoothies for $6 and sandwiches for $9.<br>
+    On one day, 65 items were sold for a total of $495.<br><br>
+
+    Let <em>s</em> be the number of smoothies and <em>w</em> the number of sandwiches.
+  </p>
+
+  <hr>
+
+  <p><strong>(a)</strong> Write down two equations to model the situation.</p>
+
+  <!-- Equation 1 -->
+  <div>
+    <input type="text" id="q1a1" placeholder="First equation">
+<button onclick="checkEquation('q1a1', ['s+w=65','w+s=65'], 'r1a1')">Check</button>
+<span id="r1a1"></span>
+  </div>
+
+  <hr>
+
+  <p><strong>(b)</strong> Find the number of smoothies sold.</p>
+
+  <div>
+    <input type="text" id="q1b" placeholder="Number of smoothies">
+<button onclick="checkNumber('q1b', '30', 'r1b')">Check</button>
+<span id="r1b"></span>
+  </div>
+
+</div>
+
+	
 	
 <div class="back">
   <a href="topic1.html">⬅ Back to SL AI</a>
