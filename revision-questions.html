@@ -1,368 +1,334 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Revision Checklist </title>
-
-<style>
-		
-<script>
-function normalizeExpression(expr) {
-  return expr
-    .replace(/\s+/g, '')      // remove spaces
-    .toLowerCase()            // lowercase
-    .replace(/−/g, '-')       // fix minus symbol
-}
-
-function checkEquation(id, correctForms, resultId) {
-  let student = document.getElementById(id).value;
-  student = normalizeExpression(student);
-
-  let isCorrect = false;
-
-  for (let i = 0; i < correctForms.length; i++) {
-    if (student === normalizeExpression(correctForms[i])) {
-      isCorrect = true;
-      break;
+  <title>Topic 1 - ZAHK Math</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f4f6f9;
+      text-align: center;
     }
-  }
 
-  if (isCorrect) {
-    document.getElementById(resultId).innerHTML = "✔️";
-    document.getElementById(resultId).style.color = "green";
-  } else {
-    document.getElementById(resultId).innerHTML = "❌";
-    document.getElementById(resultId).style.color = "red";
-  }
-}
+    header {
+      background-color: #1e3a8a;
+      color: white;
+      padding: 20px;
+    }
 
-function checkNumber(id, correctAnswer, resultId) {
-  let student = document.getElementById(id).value.trim();
+    header h1 {
+      margin: 0;
+      font-size: 32px;
+    }
 
-  if (student == correctAnswer) {
-    document.getElementById(resultId).innerHTML = "✔️";
-    document.getElementById(resultId).style.color = "green";
-  } else {
-    document.getElementById(resultId).innerHTML = "❌";
-    document.getElementById(resultId).style.color = "red";
-  }
-}
-</script>
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f6f9;
-  margin: 0;
-  padding: 0;
-}
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 40px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
 
-header {
-  background-color: #1e3a8a;
-  color: white;
-  padding: 20px;
-  text-align: center;
-}
+    .card button {
+      width: 100%;
+      padding: 20px;
+      border-radius: 15px;
+      border: none;
+      font-size: 16px;
+      background-color: #1e3a8a;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
 
-.container {
-  max-width: 900px;
-  margin: 40px auto;
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  padding: 0 20px;
-}
+    .card button:hover {
+      background-color: #163080;
+    }
 
-.card {
-  background: white;
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 100;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.6);
+    }
 
-.card p {
-  font-size: 18px;
-  margin-bottom: 10px;
-}
+    .modal-content {
+      background-color: #fefefe;
+      margin: 5% auto;
+      padding: 20px;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 600px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      position: relative;
+    }
 
-input[type=number] {
-  padding: 8px;
-  width: 100px;
-  margin-right: 10px;
-}
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
 
-button {
-  padding: 8px 15px;
-  background-color: #1e3a8a;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
+    .close:hover {
+      color: black;
+    }
 
-button:hover {
-  background-color: #162b6d;
-}
+    input {
+      padding: 8px;
+      width: 200px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-right: 10px;
+    }
 
-.correct {
-  color: green;
-  font-weight: bold;
-  margin-left: 10px;
-}
+    button.check {
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: none;
+      background-color: #1e3a8a;
+      color: white;
+      cursor: pointer;
+    }
 
-.wrong {
-  color: red;
-  font-weight: bold;
-  margin-left: 10px;
-}
+    button.check:hover {
+      background-color: #163080;
+    }
 
-.back {
-  text-align: center;
-  margin: 40px 0;
-}
+    span {
+      font-weight: bold;
+      margin-left: 10px;
+    }
 
-.back a {
-  text-decoration: none;
-  color: #555;
-  font-weight: bold;
-}
-
-</style>	
+  </style>
 </head>
-
 <body>
 
 <header>
-  <h1>Revision Checklist Questions</h1>
+  <h1>Topic 1 - Number and Algebra</h1>
 </header>
 
 <div class="container">
+  <!-- Buttons for all 11 questions -->
+  <div class="card"><button class="openModal" data-target="modal1">Question 1</button></div>
+  <div class="card"><button class="openModal" data-target="modal2">Question 2</button></div>
+  <div class="card"><button class="openModal" data-target="modal3">Question 3</button></div>
+  <div class="card"><button class="openModal" data-target="modal4">Question 4</button></div>
+  <div class="card"><button class="openModal" data-target="modal5">Question 5</button></div>
+  <div class="card"><button class="openModal" data-target="modal6">Question 6</button></div>
+  <div class="card"><button class="openModal" data-target="modal7">Question 7</button></div>
+  <div class="card"><button class="openModal" data-target="modal9">Question 9</button></div>
+  <div class="card"><button class="openModal" data-target="modal10">Question 10</button></div>
+  <div class="card"><button class="openModal" data-target="modal11">Question 11</button></div>
+</div>
 
-  <!-- QUESTION TEMPLATE -->
-  <div class="card">
+<!-- Modals -->
+<!-- Question 1 -->
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <span class="close" data-target="modal1">&times;</span>
     <p>1) A train journey lasts 2 hours 36 minutes. Write the total time in hours.</p>
-    <input type="text" id="q1">
-    <button onclick="checkAnswer('q1',2.6, 'r1')">Check</button>
+    <input type="text" id="q1" placeholder="Type your answer here">
+    <button class="check" onclick="checkNumber('q1', 2.6, 'r1')">Check</button>
     <span id="r1"></span>
   </div>
-
-	
-  <div class="card">
-    <p>2) A fitness app records that Maria ran for 1 hour 42 minutes 30 seconds.<br>
-	(a) Write the total time in hours.</p>
-<input type="number" id="q2a" step="0.01" class="no-arrows">
-  <button onclick="checkAnswer('q2a',1.71, 'r2a')">Check</button>
-  <span id="r2a"></span>
-	  
-<p>The app calculates calories burned using <i>C=480t</i>
-	Where <i>t</i> is time in hours.<br> (b) Calculate the number of calories burned.</p>
-     <input type="number" id="q2b" step="0.01" class="no-arrows">
-  <button onclick="checkAnswer('q2b', 820, 'r2b')">Check</button>
-  <span id="r2b"></span>
 </div>
 
-	
-  <div class="card">
-    <p>3)A cyclist travels 3.08 km. Write this distance in metres. </p>
-  <input type="number" id="q3" step="0.01" class="no-arrows">
-  <button onclick="checkAnswer('q3',3080, 'r3')">Check</button>
-  <span id="r3"></span>
-</div>
-
-	
-  <div class="card">
-    <p>4) A delivery drone travels 4.75 km.<br>
-a) Convert this distance into metres.
-</p>
-<input type="number" id="q4a" step="0.01" class="no-arrows">
-  <button onclick="checkAnswer('q4a',4750, 'r4a')">Check</button>
-  <span id="r4a"></span>
-		<p>
-b) The drone travels at 12 m/s.<br>
-Calculate the time taken in minutes.
-</p>
-     <input type="number" id="q4b" step="0.01" class="no-arrows">
-  <button onclick="checkAnswer('q4b', 396, 'r4b')">Check</button>
-  <span id="r4b"></span>
-</div>
-
-	
-  <div class="card">
-    <p>5)A student buys a laptop priced at $1250. The store offers a 18% discount during a sale.<br>
-Calculate the amount of the discount.
-</p>
-    <input type="number" id="q5" step="0.01" class="no-arrows">
-  <button onclick="checkAnswer('q5',225, 'r5')">Check</button>
-  <span id="r5"></span>
+<!-- Question 2 -->
+<div id="modal2" class="modal">
+  <div class="modal-content">
+    <span class="close" data-target="modal2">&times;</span>
+    <p>2) Maria ran for 1 hour 42 minutes 30 seconds.<br>(a) Write total time in hours.</p>
+    <input type="text" id="q2a" placeholder="Type your answer here">
+    <button class="check" onclick="checkNumber('q2a',1.71,'r2a')">Check</button>
+    <span id="r2a"></span>
+    <p>(b) Calories burned: <i>C = 480t</i>.</p>
+    <input type="text" id="q2b" placeholder="Type your answer here">
+    <button class="check" onclick="checkNumber('q2b',820,'r2b')">Check</button>
+    <span id="r2b"></span>
   </div>
-
-	
-<div class="card">
-    <p> 6) A store increases the price of a bicycle by 12%. The original price was $850.<br>
-
-a) Find the increase in price.
-</p>
-<input type="number" id="q6a" step="0.01" class="no-arrows">
-  <button onclick="checkAnswer('q6a',952, 'r6a')">Check</button>
-  <span id="r6a"></span>
-		<p>
-b) After the increase, a 10% discount is applied.<br>
-Find the final price.
-</p>
-     <input type="number" id="q6b" step="0.01" class="no-arrows">
-  <button onclick="checkAnswer('q6b', 857, 'r6b')">Check</button>
-  <span id="r6b"></span>
 </div>
 
+<!-- Question 3 -->
+<div id="modal3" class="modal">
+  <div class="modal-content">
+    <span class="close" data-target="modal3">&times;</span>
+    <p>3) A cyclist travels 3.08 km. Write this distance in metres.</p>
+    <input type="text" id="q3" placeholder="Type your answer here">
+    <button class="check" onclick="checkNumber('q3',3080,'r3')">Check</button>
+    <span id="r3"></span>
+  </div>
+</div>
 
-	<div class="card">
-    <p> 7) The intensity of light follows the model <i> I=150d<sup>-2</sup></i>, where <i> d </i> is the distance in metres.
-<br>
+<!-- Question 4 -->
+<div id="modal4" class="modal">
+  <div class="modal-content">
+    <span class="close" data-target="modal4">&times;</span>
+    <p>4) A delivery drone travels 4.75 km.<br>(a) Convert this distance into metres.</p>
+    <input type="text" id="q4a" placeholder="Type your answer here">
+    <button class="check" onclick="checkNumber('q4a',4750,'r4a')">Check</button>
+    <span id="r4a"></span>
+    <p>(b) The drone travels at 12 m/s.<br>Calculate time in minutes.</p>
+    <input type="text" id="q4b" placeholder="Type your answer here">
+    <button class="check" onclick="checkNumber('q4b',396,'r4b')">Check</button>
+    <span id="r4b"></span>
+  </div>
+</div>
 
-a)Rewrite the formula without a negative index.
-</p>
-		 <input type="text" id="q7a" placeholder="Type your answer here">
-  <button onclick="checkAnswer('q7a', '150/d^2', 'r7a')">Check</button>
-  <span id="r7a"></span>
+<!-- Question 5 -->
+<div id="modal5" class="modal">
+  <div class="modal-content">
+    <span class="close" data-target="modal5">&times;</span>
+    <p>5) Laptop priced at $1250. Sale: 18% discount. Calculate discount.</p>
+    <input type="text" id="q5" placeholder="Type your answer here">
+    <button class="check" onclick="checkNumber('q5',225,'r5')">Check</button>
+    <span id="r5"></span>
+  </div>
+</div>
 
-		<p>
-b) Find the intensity when <i>d=3</i>.<br>
-Find the final price.
-</p>
-    <input type="text" id="q7b">
-    <button onclick="checkAnswer('q7b',16.7, 'r7b')">Check</button>
+<!-- Question 6 -->
+<div id="modal6" class="modal">
+  <div class="modal-content">
+    <span class="close" data-target="modal6">&times;</span>
+    <p>6) Bicycle original price $850.<br>(a) Price increase 12%</p>
+    <input type="text" id="q6a" placeholder="Type your answer here">
+    <button class="check" onclick="checkNumber('q6a',102,'r6a')">Check</button>
+    <span id="r6a"></span>
+    <p>(b) After increase, 10% discount. Find final price.</p>
+    <input type="text" id="q6b" placeholder="Type your answer here">
+    <button class="check" onclick="checkNumber('q6b',857,'r6b')">Check</button>
+    <span id="r6b"></span>
+  </div>
+</div>
+
+<!-- Question 7 -->
+<div id="modal7" class="modal">
+  <div class="modal-content">
+    <span class="close" data-target="modal7">&times;</span>
+    <p>7) The intensity of light: <i>I=150 d<sup>-2</sup></i>. (a) Rewrite without negative index.</p>
+    <input type="text" id="q7a" placeholder="Type your answer here">
+    <button class="check" onclick="checkEquation('q7a',['150/d^2'],'r7a')">Check</button>
+    <span id="r7a"></span>
+    <p>(b) Find intensity when d=3.</p>
+    <input type="text" id="q7b" placeholder="Type your answer here">
+    <button class="check" onclick="checkNumber('q7b',16.7,'r7b')">Check</button>
     <span id="r7b"></span>
-</div>
-
-
-<div class="card">
-
-  <p> 8) A café sells smoothies for $6 and sandwiches for $9.<br>
-    On one day, 65 items were sold for a total of $495.<br><br>
-
-    Let <em>s</em> be the number of smoothies and <em>w</em> the number of sandwiches.
-
-
-a)  Write down two equations to model the situation.</p>
-
-  <div>
-    <input type="text" id="q1a1" placeholder="First equation">
-<button onclick="checkEquation('q1a1', ['s+w=65','w+s=65'], 'r1a1')">Check</button>
-<span id="r1a1"></span>
-
-	  <input type="text" id="q1a2" placeholder="Second equation">
-<button onclick="checkEquation('q1a2',
-['6s+9w=495','9w+6s=495'],
-'r1a2')">Check</button>
-<span id="r1a2"></span>
-  </div>
-
-  <p> b) Find the number of smoothies sold.</p>
-
-  <div>
-    <input type="text" id="q1b" placeholder="Number of smoothies">
-<button onclick="checkNumber('q1b', '30', 'r1b')">Check</button>
-<span id="r1b"></span>
   </div>
 </div>
 
-	
-<div class="card">
-<p>
-9) The population of a town is estimated as 48736.
-<br><br>
-a) Write this number correct to 2 significant figures.
-</p>
-
-<input type="text" id="q9a" placeholder="Type your answer here">
-<button onclick="checkAnswer('q9a', '49000', 'r9a')">Check</button>
-<span id="r9a"></span>
-
-<br><br>
-
-<p>
-b) State the percentage error introduced by this rounding.
-</p>
-<input type="text" id="q9b" placeholder="Type your answer here">
-<button onclick="checkAnswer('q9b', '0.541', 'r9b')">Check</button>
-<span id="r9b"></span>
-</div>	
-
-
-<div class="card">
-<p>
-10) A circle has radius <i>r = 5 cm</i>.<br><br>
-(a) Find the exact area of the circle.
-</p>
-<input type="text" id="q10a" placeholder="Type your answer here">
-<button onclick="checkAnswer('q10a', '25*pi', 'r10a')">Check</button>
-<span id="r10a"></span>
-<br><br>
-<p>
-(b) The circle is cut in half to form a semicircle. Find the exact perimeter of the semicircle.<br>
-Give all answers in exact form.
-</p>
-<input type="text" id="q10b" placeholder="Type your answer here">
-<button onclick="checkAnswer('q10b', '5*pi+10', 'r10b')">Check</button>
-<span id="r10b"></span>
-</div>
-	
-
-<div class="card">
-<p>
-11) A metal rod is measured to be 12.4 cm to the nearest 0.1 cm.
-</p>
-<p>
-(a) Write down the lower bound and upper bound of the length of the rod.
-</p>
-<div>
-  <input type="text" id="q11a1" placeholder="Lower bound">
-  <button onclick="checkAnswer('q11a1', '12.35', 'r11a1')">Check</button>
-  <span id="r11a1"></span>
-</div>
-<br>
-<div>
-  <input type="text" id="q11a2" placeholder="Upper bound">
-  <button onclick="checkAnswer('q11a2', '12.45', 'r11a2')">Check</button>
-  <span id="r11a2"></span>
-</div>
-<p>
-(b) The rod is cut into 3 equal pieces. Find the lower bound and upper bound of the length of each piece.
-</p>
-<div>
-  <input type="text" id="q11b1" placeholder="Lower bound of each piece">
-  <button onclick="checkAnswer('q11b1', '4.12', 'r11b1')">Check</button>
-  <span id="r11b1"></span>
-</div>
-<br>
-<div>
-  <input type="text" id="q11b2" placeholder="Upper bound of each piece">
-  <button onclick="checkAnswer('q11b2', '4.15', 'r11b2')">Check</button>
-  <span id="r11b2"></span>
-</div>
+<!-- Question 9 -->
+<div id="modal9" class="modal">
+  <div class="modal-content">
+    <span class="close" data-target="modal9">&times;</span>
+    <p>9) Population 48 736.<br>(a) Write correct to 2 significant figures.</p>
+    <input type="text" id="q9a" placeholder="Type your answer here">
+    <button class="check" onclick="checkNumber('q9a',49000,'r9a')">Check</button>
+    <span id="r9a"></span>
+    <p>(b) State percentage error.</p>
+    <input type="text" id="q9b" placeholder="Type your answer here">
+    <button class="check" onclick="checkNumber('q9b',0.54,'r9b')">Check</button>
+    <span id="r9b"></span>
+  </div>
 </div>
 
-
-
-
-
-	
-<div class="back">
-  <a href="topic1.html">⬅ Back to SL AI</a>
+<!-- Question 10 -->
+<div id="modal10" class="modal">
+  <div class="modal-content">
+    <span class="close" data-target="modal10">&times;</span>
+    <p>10) Circle of radius r=5 cm.<br>(a) Exact area</p>
+    <input type="text" id="q10a" placeholder="Type your answer here">
+    <button class="check" onclick="checkEquation('q10a',['25*pi'],'r10a')">Check</button>
+    <span id="r10a"></span>
+    <p>(b) Semicircle perimeter</p>
+    <input type="text" id="q10b" placeholder="Type your answer here">
+    <button class="check" onclick="checkEquation('q10b',['5*pi+10'],'r10b')">Check</button>
+    <span id="r10b"></span>
+  </div>
 </div>
 
+<!-- Question 11 -->
+<div id="modal11" class="modal">
+  <div class="modal-content">
+    <span class="close" data-target="modal11">&times;</span>
+    <p>11) Metal rod 12.4 cm nearest 0.1 cm.<br>(a) Lower & upper bounds.</p>
+    <input type="text" id="q11a1" placeholder="Lower bound">
+    <button class="check" onclick="checkNumber('q11a1',12.35,'r11a1')">Check</button>
+    <span id="r11a1"></span>
+    <input type="text" id="q11a2" placeholder="Upper bound">
+    <button class="check" onclick="checkNumber('q11a2',12.45,'r11a2')">Check</button>
+    <span id="r11a2"></span>
+    <p>(b) Rod cut in 3: lower & upper bounds per piece.</p>
+    <input type="text" id="q11b1" placeholder="Lower bound each piece">
+    <button class="check" onclick="checkNumber('q11b1',4.1167,'r11b1')">Check</button>
+    <span id="r11b1"></span>
+    <input type="text" id="q11b2" placeholder="Upper bound each piece">
+    <button class="check" onclick="checkNumber('q11b2',4.15,'r11b2')">Check</button>
+    <span id="r11b2"></span>
+  </div>
+</div>
+
+<!-- Scripts -->
 <script>
-function checkAnswer(inputId, correctAnswer, resultId) {
-  var userAnswer = document.getElementById(inputId).value;
-  var result = document.getElementById(resultId);
+// Modal open/close
+document.querySelectorAll('.openModal').forEach(btn => {
+  btn.addEventListener('click', ()=> {
+    let target = btn.getAttribute('data-target');
+    document.getElementById(target).style.display="block";
+  });
+});
 
-  if(userAnswer == correctAnswer) {
-    result.innerHTML = "✓";
-    result.className = "correct";
+document.querySelectorAll('.close').forEach(span => {
+  span.addEventListener('click', ()=> {
+    let target = span.getAttribute('data-target');
+    document.getElementById(target).style.display="none";
+  });
+});
+
+window.onclick = function(event){
+  if(event.target.classList.contains('modal')){
+    event.target.style.display="none";
+  }
+}
+
+// Smart checking
+function normalizeExpression(expr){
+  return expr.replace(/\s+/g,'').toLowerCase().replace(/−/g,'-');
+}
+
+function checkEquation(id, correctForms, resultId){
+  let student = normalizeExpression(document.getElementById(id).value);
+  let isCorrect = correctForms.some(ans => student === normalizeExpression(ans));
+  if(isCorrect){
+    document.getElementById(resultId).innerHTML="✔️";
+    document.getElementById(resultId).style.color="green";
   } else {
-    result.innerHTML = "✗";
-    result.className = "wrong";
+    document.getElementById(resultId).innerHTML="❌";
+    document.getElementById(resultId).style.color="red";
+  }
+}
+
+function checkNumber(id, correctAnswer, resultId){
+  let student = parseFloat(document.getElementById(id).value);
+  if(!isNaN(student)){
+    if(Math.abs(student - correctAnswer) < 0.01){
+      document.getElementById(resultId).innerHTML="✔️";
+      document.getElementById(resultId).style.color="green";
+    } else{
+      document.getElementById(resultId).innerHTML="❌";
+      document.getElementById(resultId).style.color="red";
+    }
+  } else{
+    document.getElementById(resultId).innerHTML="❌";
+    document.getElementById(resultId).style.color="red";
   }
 }
 </script>
 
 </body>
 </html>
-
