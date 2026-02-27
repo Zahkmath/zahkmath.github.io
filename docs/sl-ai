@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SL AI</title>
+<style>
+body { font-family: Arial; text-align: center; }
+a { display: block; margin: 10px; font-size: 18px; }
+</style>
+</head>
+
+<body>
+
+<h1>SL AI</h1>
+
+<a href="topic1.html">Topic 1 - Number and Algebra</a>
+<a href="topic2.html">Topic 2 - Functions</a>
+<a href="topic3.html">Topic 3 - Geometry and Trigonometry</a>
+<a href="topic4.html">Topic 4 - Statistics and Probability</a>
+<a href="topic5.html">Topic 5 - Calculus</a>
+
+<br><br>
+<a href="index.html">⬅ Back to Home</a>
+
+</body>
+</html>
