@@ -129,6 +129,7 @@
   <div class="card"><button class="openModal" data-target="modal12">Question 12</button></div>
   <div class="card"><button class="openModal" data-target="modal13">Question 13</button></div>
   <div class="card"><button class="openModal" data-target="modal14">Question 14</button></div>
+  <div class="card"><button class="openModal" data-target="modal15">Question 15</button></div>
 </div>
 
 <!-- Modals -->
@@ -347,6 +348,23 @@ Give all answers in exact form.</p>
 </div>
 
 
+
+  <!-- Question 15 -->
+<div id="modal15" class="modal">
+  <div class="modal-content">
+    <span class="close" data-target="modal15">&times;</span>
+ <p>  A new app gains 500 users in its first week. The number of users increases by 13% each week. </p><br>
+ <p> a)Write a formula for the number of users in week <i>n</i>.</p>
+ <input type="text" id="q15a" placeholder="Example: 500(1.13)^(n-1)">
+    <button class="check"
+      onclick="checkEquation('q15a', ['500*(1.13)^(n-1)','500(1.13)^(n-1)','500*1.13^(n-1)'],'r15a')">Check
+    </button>
+    <span id="r15a"></span>
+ <p>b) Find the number of users in week 6.</p>
+<input type="text" id="q15b" placeholder="Type your answer here">
+    <button class="check" onclick="checkNumber('q15b',921,'r15b')"> Check
+    </button> <span id="r15b"></span></div>
+</div>
 
   
   
