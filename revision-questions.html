@@ -133,6 +133,7 @@
   <div class="card"><button class="openModal" data-target="modal16">Question 16</button></div>
   <div class="card"><button class="openModal" data-target="modal17">Question 17</button></div>
   <div class="card"><button class="openModal" data-target="modal18">Question 18</button></div>
+  <div class="card"> <button class="openModal" data-target="modal19">Question 19</button></div>
 </div>
 
 <!-- Modals -->
@@ -357,7 +358,7 @@ Give all answers in exact form.</p>
   <div class="modal-content">
     <span class="close" data-target="modal15">&times;</span>
  <p>  A new app gains 500 users in its first week. The number of users increases by 13% each week. </p><br>
- <p> a)Write a formula for the number of users in week <i>n</i>.</p>
+ <p> a) Write a formula for the number of users in week <i>n</i>.</p>
  <input type="text" id="q15a" placeholder="Example: 500(1.13)^(n-1)">
     <button class="check"
       onclick="checkEquation('q15a', ['500*(1.13)^(n-1)','500(1.13)^(n-1)','500*1.13^(n-1)'],'r15a')">Check
@@ -409,7 +410,7 @@ Give all answers in exact form.</p>
   <div class="modal-content">
     <span class="close" data-target="modal18">&times;</span>
 <p>  £5000 is invested at 3.5% per year compounded quarterly. </p><br>
- <p>a)Find the value after 7 years.</p>
+ <p>a) Find the value after 7 years.</p>
  <input type="text" id="q18a" placeholder="Type your answer here">
     <button class="check" onclick="checkNumber('q18a',6382.50,'r18a')">Check </button>
     <span id="r18a"></span>
@@ -420,6 +421,18 @@ Give all answers in exact form.</p>
 
 
 
+<!-- Question 19 -->
+<div id="modal19" class="modal">
+  <div class="modal-content">
+    <span class="close" data-target="modal19">&times;</span>
+ <p> A savings account earns interest compounded monthly. After 3 years, an investment of CHF 8000 has grown to CHF 9420.
+    </p><br>
+<p>Calculate the annual interest rate, <it>r</it> (as a percentage).</p>
+ <input type="text" id="q19" placeholder="Type your answer here (e.g. 5.5)">
+    <button class="check"onclick="checkNumber('q19',5.5,'r19')"> Check </button>
+    <span id="r19"></span></div>
+</div>
+  
   
   
 
