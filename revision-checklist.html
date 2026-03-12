@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Math Revision Questions</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f4f6f9;
+    }
+
+    h2 {
+      color: black;
+    }
+
+    ul {
+      list-style-type: disc;
+      padding-left: 20px;
+    }
+
+    .topic {
+      margin-bottom: 20px;
+    }
+
+    .buttons {
+      margin: 5px 0 15px 0;
+    }
+
+    .buttons button {
+      margin-right: 10px;
+      padding: 10px 15px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      background-color: #1e3a8a;
+      color: white;
+      transition: 0.3s;
+    }
+
+    .buttons button:hover {
+      background-color: #163080;
+    }
+
+    /* Modal styling */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 100;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.6);
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 5% auto;
+      padding: 20px;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 600px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      position: relative;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      color: black;
+    }
+
+    input {
+      padding: 8px;
+      width: 200px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-right: 10px;
+      margin-top: 5px;
+    }
+
+    button.check {
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: none;
+      background-color: #1e3a8a;
+      color: white;
+      cursor: pointer;
+    }
+
+    button.check:hover {
+      background-color: #163080;
+    }
+
+    span {
+      font-weight: bold;
+      margin-left: 10px;
+    }
+
+  </style>
+</head>
+<body>
+
+<h2>NUMBER AND ALGEBRA</h2>
+<ul>
+  <li class="topic">Convert between hours, minutes and seconds
+    <div class="buttons">
+      <button class="openModal" data-target="modalQ1">Question 1</button>
+      <button class="solutionBtn" data-target="solution1">Solution 1</button>
+    </div>
+  </li>
+
+  <li class="topic">
+    Convert between distance units, km, m, cm
+    <div class="buttons">
+      <button class="openModal" data-target="modalQ3">Question 3</button>
+      <button class="solutionBtn" data-target="solution3">Solution 3</button>
+    </div>
+  </li>
+
+  <li class="topic">
+    Find percentage of amount
+    <div class="buttons">
+      <button class="openModal" data-target="modalQ5">Question 5</button>
+      <button class="solutionBtn" data-target="solution5">Solution 5</button>
+    </div>
+  </li>
+
+  <!-- Add more topics here following same structure -->
+</ul>
+
+<!-- Example Modals -->
+<!-- Question 1 -->
+<div id="modalQ1" class="modal">
+  <div class="modal-content">
+    <span class="close" data-target="modalQ1">&times;</span>
+    <p>A train journey lasts 2 hours 36 minutes. Write the total time in hours.</p>
+    <input type="text" id="q1" placeholder="Type your answer here">
+    <button class="check" onclick="checkNumber('q1',2.6,'r1')">Check</button>
+    <span id="r1"></span>
+  </div>
+</div>
+
+<!-- Solution 1 -->
+<div id="solution1" class="modal">
+  <div class="modal-content">
+    <span class="close" data-target="solution1">&times;</span>
+    <p>Upload your solution photo here in the future.</p>
+  </div>
+</div>
+
+<!-- Question 3 -->
+<div id="modalQ3" class="modal">
+  <div class="modal-content">
+    <span class="close" data-target="modalQ3">&times;</span>
+    <p>A cyclist travels 3.08 km. Write this distance in metres.</p>
+    <input type="text" id="q3" placeholder="Type your answer here">
+    <button class="check" onclick="checkNumber('q3',3080,'r3')">Check</button>
+    <span id="r3"></span>
+  </div>
+</div>
+
+<!-- Solution 3 -->
+<div id="solution3" class="modal">
+  <div class="modal-content">
+    <span class="close" data-target="solution3">&times;</span>
+    <p>Upload your solution photo here in the future.</p>
+  </div>
+</div>
+
+<!-- Question 5 -->
+<div id="modalQ5" class="modal">
+  <div class="modal-content">
+    <span class="close" data-target="modalQ5">&times;</span>
+    <p>A student buys a laptop priced at $1250. The store offers an 18% discount during a sale. Calculate the amount of the discount.</p>
+    <input type="text" id="q5" placeholder="Type your answer here">
+    <button class="check" onclick="checkNumber('q5',225,'r5')">Check</button>
+    <span id="r5"></span>
+  </div>
+</div>
+
+<!-- Solution 5 -->
+<div id="solution5" class="modal">
+  <div class="modal-content">
+    <span class="close" data-target="solution5">&times;</span>
+    <p>Upload your solution photo here in the future.</p>
+  </div>
+</div>
+
+<script>
+// Modal open/close
+document.querySelectorAll('.openModal, .solutionBtn').forEach(btn => {
+  btn.addEventListener('click', ()=> {
+    let target = btn.getAttribute('data-target');
+    document.getElementById(target).style.display="block";
+  });
+});
+
+document.querySelectorAll('.close').forEach(span => {
+  span.addEventListener('click', ()=> {
+    let target = span.getAttribute('data-target');
+    document.getElementById(target).style.display="none";
+  });
+});
+
+window.onclick = function(event){
+  if(event.target.classList.contains('modal')){
+    event.target.style.display="none";
+  }
+}
+
+// Checking functions
+function normalizeExpression(expr){
+  return expr.replace(/\s+/g,'').toLowerCase().replace(/−/g,'-');
+}
+
+function checkEquation(id, correctForms, resultId){
+  let student = normalizeExpression(document.getElementById(id).value);
+  let isCorrect = correctForms.some(ans => student === normalizeExpression(ans));
+  let el = document.getElementById(resultId);
+  el.innerHTML = isCorrect ? "✔️" : "❌";
+  el.style.color = isCorrect ? "green" : "red";
+}
+
+function checkNumber(id, correctAnswer, resultId){
+  let student = parseFloat(document.getElementById(id).value);
+  let el = document.getElementById(resultId);
+  if(!isNaN(student) && Math.abs(student - correctAnswer) < 0.01){
+    el.innerHTML = "✔️";
+    el.style.color = "green";
+  } else{
+    el.innerHTML = "❌";
+    el.style.color = "red";
+  }
+}
+</script>
+</body>
+</html>
