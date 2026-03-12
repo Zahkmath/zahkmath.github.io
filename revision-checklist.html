@@ -414,29 +414,185 @@
 </div>
 
    <!-- Question 5 -->
+<div id="modalQ5" class="modal">
+  <div class="modal-content">
+    <span class="close" data-target="modalQ5">&times;</span>
+    <p> A student buys a laptop priced at $1250. The store offers an 18% discount during a sale.<br><br>
+      Calculate the amount of the discount.
+    </p>
+    <input type="text" id="q5" placeholder="Type your answer here">
+    <button class="check" onclick="checkNumber('q5',225,'r5')">Check</button>
+    <span id="r5"></span>
+  </div>
+</div>
 
-
+<!-- Solution Placeholder for Q5 -->
+<div id="solution5" class="modal">
+  <div class="modal-content">
+    <span class="close" data-target="solution5">&times;</span>
+    <p>Upload or view solution for Q5 here.</p>
+  </div>
+</div>
 
   
    <!-- Question 6 -->
 
+<!-- Question 6 Modal -->
+<div id="modalQ6" class="modal">
+  <div class="modal-content">
+    <span class="close" data-target="modalQ6">&times;</span>
+    <p> A store decreases the price of a bicycle by 12%. The original price was $850. </p>
+<p>a) Calculate the amount of the discount.</p>
+    <input type="text" id="q6a" placeholder="Type your answer here">
+    <button class="check" onclick="checkNumber('q6a',102,'r6a')">Check</button>
+    <span id="r6a"></span>
 
+    <p>b) After the decrease, a 10% discount is applied. Find the final price.</p>
+    <input type="text" id="q6b" placeholder="Type your answer here">
+    <button class="check" onclick="checkNumber('q6b',673.20,'r6b')">Check</button>
+    <span id="r6b"></span>
+  </div>
+</div>
+
+<!-- Solution Placeholder for Q6 -->
+<div id="solution6" class="modal">
+  <div class="modal-content">
+    <span class="close" data-target="solution6">&times;</span>
+    <p>Upload or view solution for Q6 here.</p>
+  </div>
+</div>
 
    <!-- Question 7 -->
+<div id="modalQ7" class="modal">
+  <div class="modal-content">
+    <span class="close" data-target="modalQ7">&times;</span>
+    <p> The intensity of light follows <i>I = 150 d<sup>-2</sup></i>, where <i>d</i> is the distance in metres.</p>
+<p>a) Rewrite the formula without a negative index.</p>
+    <input type="text" id="q7a" placeholder="Type your answer here">
+    <button class="check" onclick="checkEquation('q7a',['150/d^2'],'r7a')">Check</button>
+    <span id="r7a"></span>
 
+    <p>b) Find the intensity when <i>d = 3</i>.</p>
+    <input type="text" id="q7b" placeholder="Type your answer here">
+    <button class="check" onclick="checkNumber('q7b',16.7,'r7b')">Check</button>
+    <span id="r7b"></span>
+  </div>
+</div>
 
+<!-- Solution Placeholder for Q7 -->
+<div id="solution7" class="modal">
+  <div class="modal-content">
+    <span class="close" data-target="solution7">&times;</span>
+    <p>Upload or view solution for Q7 here.</p>
+  </div>
+</div>
 
    <!-- Question 8 -->
+<div id="modalQ8" class="modal">
+  <div class="modal-content">
+    <span class="close" data-target="modalQ8">&times;</span>
+    <p>
+      Q8. Tickets to enter a museum are priced at <i>a</i> dollars for adults and <i>c</i> dollars for children.<br>
+      A school group of 7 adults and 60 children paid a total of $832.<br>
+      A family of 3 adults and 5 children paid a total of $108.
+    </p>
 
+    <p>a) Write down two equations that represent this information.</p>
+    <input type="text" id="q8a1" placeholder="Equation 1">
+    <input type="text" id="q8a2" placeholder="Equation 2">
+    <button class="check" onclick="checkEquation('q8a1',['7a+60c=832','7*a+60*c=832'],'r8a1'); checkEquation('q8a2',['3a+5c=108','3*a+5*c=108'],'r8a2')">Check</button>
+    <span id="r8a1"></span> <span id="r8a2"></span>
 
+    <p>b) Hence, find the price of an adult ticket and a child ticket.</p>
+    <input type="text" id="q8b1" placeholder="Price of adult ticket">
+    <input type="text" id="q8b2" placeholder="Price of child ticket">
+    <button class="check" onclick="checkNumber('q8b1',100,'r8b1'); checkNumber('q8b2',4.2,'r8b2')">Check</button>
+    <span id="r8b1"></span> <span id="r8b2"></span>
+  </div>
+</div>
+
+<!-- Solution Placeholder for Q8 -->
+<div id="solution8" class="modal">
+  <div class="modal-content">
+    <span class="close" data-target="solution8">&times;</span>
+    <p>Upload or view solution for Q8 here.</p>
+  </div>
+</div>
 
 
    <!-- Question 9 -->
+<div id="modalQ9" class="modal">
+  <div class="modal-content">
+    <span class="close" data-target="modalQ9">&times;</span>
+    <p>
+      Q9. A school canteen sells sandwiches, salads, and juices.<br>
+      On Monday: 2 sandwiches, 1 salad, and 1 juice cost CHF 15.<br>
+      On Tuesday: 1 sandwich, 3 salads, and 1 juice cost CHF 18.<br>
+      On Wednesday: 3 sandwiches, 2 salads, and 2 juices cost CHF 26.<br>
+      Let: x = price of a sandwich (CHF), y = price of a salad (CHF), z = price of a juice (CHF)
+    </p>
 
+    <p>a) Write down three equations representing the above information.</p>
+    <input type="text" id="q9a1" placeholder="Equation 1">
+    <input type="text" id="q9a2" placeholder="Equation 2">
+    <input type="text" id="q9a3" placeholder="Equation 3">
+    <button class="check" 
+      onclick="
+        checkEquation('q9a1',['2x+y+z=15','2*x+y+z=15'],'r9a1'); 
+        checkEquation('q9a2',['x+3y+z=18','x+3*y+z=18'],'r9a2'); 
+        checkEquation('q9a3',['3x+2y+2z=26','3*x+2*y+2*z=26'],'r9a3')
+      ">Check</button>
+    <span id="r9a1"></span> <span id="r9a2"></span> <span id="r9a3"></span>
 
+    <p>b) Solve the system of equations to find the price of each item.</p>
+    <input type="text" id="q9b1" placeholder="Price of sandwich (x)">
+    <input type="text" id="q9b2" placeholder="Price of salad (y)">
+    <input type="text" id="q9b3" placeholder="Price of juice (z)">
+    <button class="check" 
+      onclick="
+        checkNumber('q9b1',4,'r9b1'); 
+        checkNumber('q9b2',5,'r9b2'); 
+        checkNumber('q9b3',2,'r9b3')
+      ">Check</button>
+    <span id="r9b1"></span> <span id="r9b2"></span> <span id="r9b3"></span>
+  </div>
+</div>
+
+<!-- Solution Placeholder for Q9 -->
+<div id="solution9" class="modal">
+  <div class="modal-content">
+    <span class="close" data-target="solution9">&times;</span>
+    <p>Upload or view solution for Q9 here.</p>
+  </div>
+</div>
 
    <!-- Question 10 -->
+<div id="modalQ10" class="modal">
+  <div class="modal-content">
+    <span class="close" data-target="modalQ10">&times;</span>
+    <p>
+      Q10. The population of a town is estimated as 48,736.
+    </p>
 
+    <p>a) Write this number correct to 2 significant figures.</p>
+    <input type="text" id="q10a" placeholder="Type your answer here">
+    <button class="check" onclick="checkNumber('q10a',49000,'r10a')">Check</button>
+    <span id="r10a"></span>
+
+    <p>b) State the percentage error introduced by this rounding.</p>
+    <input type="text" id="q10b" placeholder="Type your answer here">
+    <button class="check" onclick="checkNumber('q10b',0.54,'r10b')">Check</button>
+    <span id="r10b"></span>
+  </div>
+</div>
+
+<!-- Solution Placeholder for Q10 -->
+<div id="solution10" class="modal">
+  <div class="modal-content">
+    <span class="close" data-target="solution10">&times;</span>
+    <p>Upload or view solution for Q10 here.</p>
+  </div>
+</div>
   
 <!-- Repeat the above modal structures for Q2–Q30 -->
 <!-- Add input IDs as q2a, q2b, q3, q4a, q4b, ..., q30 as needed -->
