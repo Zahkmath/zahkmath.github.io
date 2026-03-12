@@ -352,7 +352,7 @@
     <span id="r2a"></span>
 <p>
       b) The app calculates calories burned using <i>C = 480 t</i>, where <i>t</i> is time in hours.
-      <br>
+      <br><br>
       Calculate the number of calories burned.
     </p>
     <input type="text" id="q2b" placeholder="Type your answer here">
@@ -370,25 +370,72 @@
 </div>
 
   <!-- Question 3 -->
-
 <div id="modalQ3" class="modal">
   <div class="modal-content">
     <span class="close" data-target="modalQ3">&times;</span>
-    <p>A train journey lasts 2 hours 36 minutes. Write the total time in hours.</p>
+    <p>A cyclist travels 3.08 km. Write this distance in metres. </p>
     <input type="text" id="q3" placeholder="Type your answer here">
-    <button class="check" onclick="checkNumber('q3',2.6,'r3')">Check</button>
+    <button class="check" onclick="checkNumber('q3',3080,'r3')">Check</button>
     <span id="r3"></span>
   </div>
 </div>
 
+<!-- Solution Placeholder for Q3 -->
 <div id="solution3" class="modal">
   <div class="modal-content">
-    <span class="close" data-target="solution1">&times;</span>
+    <span class="close" data-target="solution3">&times;</span>
     <p>Upload or view solution for Q3 here.</p>
   </div>
 </div>
   
     <!-- Question 4 -->
+
+<div id="modalQ4" class="modal">
+  <div class="modal-content">
+    <span class="close" data-target="modalQ4">&times;</span>
+    <p> a) A delivery drone travels 4.75 km. Convert this distance into metres. </p>
+    <input type="text" id="q4a" placeholder="Type your answer here">
+    <button class="check" onclick="checkNumber('q4a',4750,'r4a')">Check</button>
+    <span id="r4a"></span>
+<p> b) The drone travels at 12 m/s. Calculate the time taken in minute.
+    </p>
+    <input type="text" id="q4b" placeholder="Type your answer here">
+    <button class="check" onclick="checkNumber('q4b',6.6,'r4b',3)">Check</button>
+    <span id="r4b"></span>
+  </div>
+</div>
+
+<!-- Solution Placeholder for Q4 -->
+<div id="solution4" class="modal">
+  <div class="modal-content">
+    <span class="close" data-target="solution4">&times;</span>
+    <p>Upload or view solution for Q4 here.</p>
+  </div>
+</div>
+
+   <!-- Question 5 -->
+
+
+
+  
+   <!-- Question 6 -->
+
+
+
+   <!-- Question 7 -->
+
+
+
+   <!-- Question 8 -->
+
+
+
+
+   <!-- Question 9 -->
+
+
+
+   <!-- Question 10 -->
 
   
 <!-- Repeat the above modal structures for Q2–Q30 -->
@@ -428,17 +475,35 @@ function checkEquation(id, correctForms, resultId){
   el.style.color = isCorrect ? "green" : "red";
 }
 
-function checkNumber(id, correctAnswer, resultId){
+// Helper to round a number to n significant figures
+function roundToSigFigs(num, sig) {
+  if (num === 0) return 0;
+  const mult = Math.pow(10, sig - Math.floor(Math.log10(Math.abs(num))) - 1);
+  return Math.round(num * mult) / mult;
+}
+
+// Updated checkNumber function with optional sig figs
+function checkNumber(id, correctAnswer, resultId, sigFigs = null) {
   let student = parseFloat(document.getElementById(id).value);
-  let el = document.getElementById(resultId);
-  if(!isNaN(student) && Math.abs(student - correctAnswer) < 0.01){
-    el.innerHTML = "✔️";
-    el.style.color = "green";
-  } else{
-    el.innerHTML = "❌";
-    el.style.color = "red";
+  if (!isNaN(student)) {
+    let answerToCompare = correctAnswer;
+    if (sigFigs) {
+      student = roundToSigFigs(student, sigFigs);
+      answerToCompare = roundToSigFigs(correctAnswer, sigFigs);
+    }
+    if (Math.abs(student - answerToCompare) < 0.01) {
+      document.getElementById(resultId).innerHTML = "✔️";
+      document.getElementById(resultId).style.color = "green";
+    } else {
+      document.getElementById(resultId).innerHTML = "❌";
+      document.getElementById(resultId).style.color = "red";
+    }
+  } else {
+    document.getElementById(resultId).innerHTML = "❌";
+    document.getElementById(resultId).style.color = "red";
   }
 }
+
 </script>
 <div class="back"><a href="topic1.html">⬅ Back to Topic 1 </a></div>
 </body>
