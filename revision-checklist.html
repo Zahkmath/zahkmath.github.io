@@ -124,7 +124,6 @@
 </header>
 
 <ul>
-  <!-- Example topic structure -->
   <li class="topic">Convert between hours, minutes and seconds
     <div class="buttons">
       <button class="openModal" data-target="modalQ1">Question 1</button>
@@ -321,12 +320,11 @@
   </li>
 </ul>
 
-<!-- Example Modals for all 30 questions -->
-<!-- We'll show first 2 fully as template; repeat for all -->
+<!-- Placeholder modals for Q1 (duplicate and edit for Q2–Q30) -->
 <div id="modalQ1" class="modal">
   <div class="modal-content">
     <span class="close" data-target="modalQ1">&times;</span>
-    <p>A train journey lasts 2 hours 36 minutes. Write the total time in hours.</p>
+    <p>Q1. A train journey lasts 2 hours 36 minutes. Write the total time in hours.</p>
     <input type="text" id="q1" placeholder="Type your answer here">
     <button class="check" onclick="checkNumber('q1',2.6,'r1')">Check</button>
     <span id="r1"></span>
@@ -336,35 +334,15 @@
 <div id="solution1" class="modal">
   <div class="modal-content">
     <span class="close" data-target="solution1">&times;</span>
-    <p>Upload your solution photo here in the future.</p>
+    <p>Upload or view solution for Q1 here.</p>
   </div>
 </div>
 
-<div id="modalQ2" class="modal">
-  <div class="modal-content">
-    <span class="close" data-target="modalQ2">&times;</span>
-    <p>Maria ran for 1 hour 42 minutes 30 seconds.<br>a) Write total time in hours.</p>
-    <input type="text" id="q2a" placeholder="Answer a)">
-    <button class="check" onclick="checkNumber('q2a',1.71,'r2a')">Check</button>
-    <span id="r2a"></span><br>
-    <p>b) Calculate calories burned using C=480t</p>
-    <input type="text" id="q2b" placeholder="Answer b)">
-    <button class="check" onclick="checkNumber('q2b',820,'r2b')">Check</button>
-    <span id="r2b"></span>
-  </div>
-</div>
-
-<div id="solution2" class="modal">
-  <div class="modal-content">
-    <span class="close" data-target="solution2">&times;</span>
-    <p>Upload your solution photo here in the future.</p>
-  </div>
-</div>
-
-<!-- Repeat modals for Q3-Q30 following same template -->
+<!-- Repeat the above modal structures for Q2–Q30 -->
+<!-- Add input IDs as q2a, q2b, q3, q4a, q4b, ..., q30 as needed -->
+<!-- Add solution placeholders solution2–solution30 -->
 
 <script>
-// Modal open/close
 document.querySelectorAll('.openModal, .solutionBtn').forEach(btn => {
   btn.addEventListener('click', ()=> {
     let target = btn.getAttribute('data-target');
@@ -385,7 +363,6 @@ window.onclick = function(event){
   }
 }
 
-// Checking functions
 function normalizeExpression(expr){
   return expr.replace(/\s+/g,'').toLowerCase().replace(/−/g,'-');
 }
@@ -410,6 +387,6 @@ function checkNumber(id, correctAnswer, resultId){
   }
 }
 </script>
-  <div class="back"><a href="topic1.html">⬅ Back to Topic 1 </a></div>
+
 </body>
 </html>
