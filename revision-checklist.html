@@ -11,14 +11,14 @@
     .buttons { margin-top: 5px; }
     .buttons button { margin-right: 12px; margin-top: 5px; padding: 12px 18px; border-radius: 12px; border: none; cursor: pointer; background-color: #1e3a8a; color: white; font-size:16px; transition:0.3s;}
     .buttons button:hover { background-color:#163080; }
-    input { padding:10px; width:230px; border-radius:8px; border:1px solid #ccc; margin:8px 10px 8px 0; }
+    input { padding:10px; width:230px; border-radius:8px; border:1px solid #ccc; margin:8px 10px 8px 0; display:block; }
     button.check { padding:8px 14px; border-radius:8px; border:none; background-color:#1e3a8a; color:white; cursor:pointer; font-size:14px; }
     button.check:hover { background-color:#163080; }
 
     /* Modal styles */
     .modal { display:none; position:fixed; z-index:100; left:0; top:0; width:100%; height:100%; overflow:auto; background-color: rgba(0,0,0,0.6);}
     .modal-content { background-color: #fefefe; margin:5% auto; padding:25px; border-radius:15px; width:90%; max-width:800px; box-shadow:0 4px 10px rgba(0,0,0,0.2); position: relative; text-align:left;}
-    .close { color:#aaa; float:right; font-size:28px; font-weight:bold; cursor:pointer;}
+    .close { position:absolute; top:15px; right:20px; color:#aaa; font-size:28px; font-weight:bold; cursor:pointer; z-index:10; }
     .close:hover { color:black; }
     .solution-image { max-width: 100%; max-height: 70vh; height: auto; display:block; margin:15px auto; border-radius:10px; }
   </style>
@@ -30,6 +30,7 @@
 </header>
 
 <ul>
+  <!-- Topics with buttons -->
   <li class="topic">Convert between hours, minutes and seconds
     <div class="buttons">
       <button class="openModal" data-target="modalQ1">Question 1</button>
@@ -47,20 +48,75 @@
       <button class="openModal" data-target="solution4">Solution 4</button>
     </div>
   </li>
+
+  <li class="topic">Find percentage of amount
+    <div class="buttons">
+      <button class="openModal" data-target="modalQ5">Question 5</button>
+      <button class="openModal" data-target="solution5">Solution 5</button>
+    </div>
+  </li>
+
+  <li class="topic">Percentage increase and decrease
+    <div class="buttons">
+      <button class="openModal" data-target="modalQ6">Question 6</button>
+      <button class="openModal" data-target="solution6">Solution 6</button>
+    </div>
+  </li>
+
+  <li class="topic">Index laws – negative index law
+    <div class="buttons">
+      <button class="openModal" data-target="modalQ7">Question 7</button>
+      <button class="openModal" data-target="solution7">Solution 7</button>
+    </div>
+  </li>
+
+  <li class="topic">Setting up equations and solving simultaneously
+    <div class="buttons">
+      <button class="openModal" data-target="modalQ8">Question 8</button>
+      <button class="openModal" data-target="solution8">Solution 8</button>
+      <button class="openModal" data-target="modalQ9">Question 9</button>
+      <button class="openModal" data-target="solution9">Solution 9</button>
+    </div>
+  </li>
+
+  <li class="topic">Rounding to given significant figures
+    <div class="buttons">
+      <button class="openModal" data-target="modalQ10">Question 10</button>
+      <button class="openModal" data-target="solution10">Solution 10</button>
+    </div>
+  </li>
+
+  <!-- Additional topics Q11–Q30 follow the same pattern -->
 </ul>
 
-<!-- Modal Q1 -->
+<!-- Example modal Q1 -->
 <div id="modalQ1" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
     <p>A train journey lasts 2 hours 36 minutes. Write the total time in hours.</p>
-    <input type="text" id="q1" placeholder="Type your answer">
+    <input type="text" id="q1" placeholder="Answer">
     <button class="check" onclick="checkNumber('q1',2.6,'r1')">Check</button>
     <span id="r1"></span>
   </div>
 </div>
 
-<!-- Solution 1 -->
+<!-- Example modal Q2 with a & b -->
+<div id="modalQ2" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>Maria ran for 1 hour 42 minutes 30 seconds.</p>
+    <p>a) Write the total time in hours.</p>
+    <input type="text" id="q2a" placeholder="Answer a">
+    <button class="check" onclick="checkNumber('q2a',1.7083,'r2a')">Check</button>
+    <span id="r2a"></span>
+    <p>b) Calculate calories burned using C=480t.</p>
+    <input type="text" id="q2b" placeholder="Answer b">
+    <button class="check" onclick="checkNumber('q2b',820,'r2b')">Check</button>
+    <span id="r2b"></span>
+  </div>
+</div>
+
+<!-- Example solution modals -->
 <div id="solution1" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
@@ -68,24 +124,6 @@
   </div>
 </div>
 
-<!-- Modal Q2 -->
-<div id="modalQ2" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <p>Maria ran for 1 hour 42 minutes 30 seconds.
-a) Write the total time in hours.
-b) Calculate calories burned using C=480t.</p>
-    <input type="text" id="q2a" placeholder="Answer a">
-    <button class="check" onclick="checkNumber('q2a',1.7083,'r2a')">Check</button>
-    <span id="r2a"></span>
-    <br>
-    <input type="text" id="q2b" placeholder="Answer b">
-    <button class="check" onclick="checkNumber('q2b',820,'r2b')">Check</button>
-    <span id="r2b"></span>
-  </div>
-</div>
-
-<!-- Solution 2 -->
 <div id="solution2" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
@@ -94,8 +132,7 @@ b) Calculate calories burned using C=480t.</p>
 </div>
 
 <script>
-// Open modal and reset input fields
-const modals = document.querySelectorAll('.modal');
+// Open modal and reset inputs
 document.querySelectorAll('.openModal').forEach(button => {
   button.addEventListener('click', () => {
     const modal = document.getElementById(button.dataset.target);
