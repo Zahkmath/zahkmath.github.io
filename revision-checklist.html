@@ -8,7 +8,6 @@
     header h1 { margin:0; font-size:36px;}
     ul { list-style-type: disc; padding-left: 40px; text-align: left; max-width: 1000px; margin: 30px auto;}
     .topic { margin-bottom: 25px; color: black; font-weight: bold; }
-    .question { color: #1e3a8a; font-weight: normal; margin-left: 20px; display:block; margin-top:5px;}
     .buttons { margin-top: 5px; }
     .buttons button { margin-right: 12px; margin-top: 5px; padding: 12px 18px; border-radius: 12px; border: none; cursor: pointer; background-color: #1e3a8a; color: white; font-size:16px; transition:0.3s;}
     .buttons button:hover { background-color:#163080; }
@@ -21,7 +20,7 @@
     .modal-content { background-color: #fefefe; margin:5% auto; padding:25px; border-radius:15px; width:90%; max-width:800px; box-shadow:0 4px 10px rgba(0,0,0,0.2); position: relative; text-align:left;}
     .close { color:#aaa; float:right; font-size:28px; font-weight:bold; cursor:pointer;}
     .close:hover { color:black; }
-    .solution-image { max-width: 100%; height:auto; display:block; margin:15px auto; border-radius:10px; }
+    .solution-image { max-width: 100%; max-height: 70vh; height: auto; display:block; margin:15px auto; border-radius:10px; }
   </style>
 </head>
 <body>
@@ -31,68 +30,51 @@
 </header>
 
 <ul>
-  <!-- Example Topic with Questions -->
   <li class="topic">Convert between hours, minutes and seconds
-    <span class="question">Q1. A train journey lasts 2 hours 36 minutes. Write the total time in hours.</span>
     <div class="buttons">
       <button class="openModal" data-target="modalQ1">Question 1</button>
       <button class="openModal" data-target="solution1">Solution 1</button>
-    </div>
-
-    <span class="question">Q2. A fitness app records that Maria ran for 1 hour 42 minutes 30 seconds.
-a) Write the total time in hours.
-b) Calculate calories burned using C=480t where t is time in hours.</span>
-    <div class="buttons">
       <button class="openModal" data-target="modalQ2">Question 2</button>
       <button class="openModal" data-target="solution2">Solution 2</button>
     </div>
   </li>
 
   <li class="topic">Convert between distance units, km, m, cm
-    <span class="question">Q3. A cyclist travels 3.08 km. Write this distance in metres.</span>
     <div class="buttons">
       <button class="openModal" data-target="modalQ3">Question 3</button>
       <button class="openModal" data-target="solution3">Solution 3</button>
-    </div>
-
-    <span class="question">Q4. a) A delivery drone travels 4.75 km. Convert this distance into metres.
-b) The drone travels at 12 m/s. Calculate time in minutes.</span>
-    <div class="buttons">
       <button class="openModal" data-target="modalQ4">Question 4</button>
       <button class="openModal" data-target="solution4">Solution 4</button>
     </div>
   </li>
-
-  <!-- Repeat for all topics and questions up to Q30 -->
 </ul>
 
-<!-- Modal Template -->
-<!-- Example: Q1 -->
+<!-- Modal Q1 -->
 <div id="modalQ1" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
-    <p>Q1. A train journey lasts 2 hours 36 minutes. Write the total time in hours.</p>
+    <p>A train journey lasts 2 hours 36 minutes. Write the total time in hours.</p>
     <input type="text" id="q1" placeholder="Type your answer">
     <button class="check" onclick="checkNumber('q1',2.6,'r1')">Check</button>
     <span id="r1"></span>
   </div>
 </div>
 
+<!-- Solution 1 -->
 <div id="solution1" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
-    <h2>Solution 1</h2>
-    <img src="solutions/q1.png" alt="Solution 1" class="solution-image">
+    <img src="solutions-1/q1.png" alt="Solution 1" class="solution-image">
   </div>
 </div>
 
-<!-- Example: Q2 -->
+<!-- Modal Q2 -->
 <div id="modalQ2" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
-    <p>Q2. A fitness app records that Maria ran for 1 hour 42 minutes 30 seconds.
+    <p>Maria ran for 1 hour 42 minutes 30 seconds.
 a) Write the total time in hours.
-b) Calculate calories burned using C=480t where t is time in hours.</p>
+b) Calculate calories burned using C=480t.</p>
     <input type="text" id="q2a" placeholder="Answer a">
     <button class="check" onclick="checkNumber('q2a',1.7083,'r2a')">Check</button>
     <span id="r2a"></span>
@@ -103,30 +85,27 @@ b) Calculate calories burned using C=480t where t is time in hours.</p>
   </div>
 </div>
 
+<!-- Solution 2 -->
 <div id="solution2" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
-    <h2>Solution 2</h2>
-    <img src="solutions/q2.png" alt="Solution 2" class="solution-image">
+    <img src="solutions-1/q2.png" alt="Solution 2" class="solution-image">
   </div>
 </div>
 
-<!-- Repeat similarly for Q3–Q30 with proper IDs, question text, correct answers, and solution images -->
-
 <script>
-// Open modal and reset inputs
+// Open modal and reset input fields
+const modals = document.querySelectorAll('.modal');
 document.querySelectorAll('.openModal').forEach(button => {
   button.addEventListener('click', () => {
     const modal = document.getElementById(button.dataset.target);
     modal.style.display = 'block';
-    const inputs = modal.querySelectorAll('input');
-    const results = modal.querySelectorAll('span');
-    inputs.forEach(input => input.value = '');
-    results.forEach(span => span.textContent = '');
+    modal.querySelectorAll('input').forEach(input => input.value = '');
+    modal.querySelectorAll('span').forEach(span => span.textContent = '');
   });
 });
 
-// Close modal
+// Close modal on × click
 document.querySelectorAll('.close').forEach(span => {
   span.addEventListener('click', () => {
     span.closest('.modal').style.display = 'none';
@@ -134,22 +113,22 @@ document.querySelectorAll('.close').forEach(span => {
 });
 
 // Close modal when clicking outside
-window.onclick = function(event) {
+window.addEventListener('click', event => {
   if (event.target.classList.contains('modal')) {
     event.target.style.display = 'none';
   }
-}
+});
 
 // Check answer function
 function checkNumber(inputId, correct, resultId) {
   const value = parseFloat(document.getElementById(inputId).value);
   const span = document.getElementById(resultId);
   if (!isNaN(value) && Math.abs(value - correct) < 0.01) {
-    span.textContent = "✅";
-    span.style.color = "green";
+    span.textContent = '✅';
+    span.style.color = 'green';
   } else {
-    span.textContent = "❌";
-    span.style.color = "red";
+    span.textContent = '❌';
+    span.style.color = 'red';
   }
 }
 </script>
