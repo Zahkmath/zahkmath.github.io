@@ -3,6 +3,31 @@
 <head>
   <title>Revision Checklist Questions</title>
   <style>
+  
+    .solution-image {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .modal-content {
+      position: relative;
+      padding: 20px;
+      background-color: #fff;
+      max-width: 600px;
+      margin: 100px auto;
+      border-radius: 10px;
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 28px;
+      cursor: pointer;
+    }
+ 
     body { font-family: Arial, sans-serif; margin:0; background-color: #f4f6f9; text-align: center;}
     header { background-color: #1e3a8a; color: white; padding: 25px; }
     header h1 { margin:0; font-size:36px;}
@@ -238,9 +263,9 @@
 
 <div id="solution1" class="modal">
   <div class="modal-content">
-    <span class="close" data-target="solution1">&times;</span>
+    <span class="close">&times;</span>
     <h2>Solution 1</h2>
-    <img src="q1.png" alt="Solution 1">
+    <img src="solutions-1/q1.png" alt="Solution 1" class="solution-image">
   </div>
 </div>
 
@@ -279,20 +304,19 @@
 
 <script>
   // Open modal
-  document.querySelectorAll('.openModal').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const modal = document.getElementById(btn.dataset.target);
-      modal.style.display = 'block';
-    });
+  document.querySelectorAll('.openModal').forEach(button => {
+  button.addEventListener('click', () => {
+    const modal = document.getElementById(button.dataset.target);
+    modal.style.display = 'block';
   });
+});
 
   // Close modal
-  document.querySelectorAll('.close').forEach(span => {
-    span.addEventListener('click', () => {
-      const modal = document.getElementById(span.dataset.target);
-      modal.style.display = 'none';
-    });
+document.querySelectorAll('.close').forEach(span => {
+  span.addEventListener('click', () => {
+    span.closest('.modal').style.display = 'none';
   });
+});
 
   // Close modal when clicking outside content
   window.onclick = function(event) {
