@@ -115,6 +115,14 @@
       font-weight: bold;
       margin-left: 10px;
     }
+    /* Keep your existing modal styling */
+.modal-content img {
+  max-width: 100%;   /* Image will never exceed modal width */
+  height: auto;      /* Maintain aspect ratio */
+  display: block;
+  margin: 15px auto; /* Center the image inside modal */
+  border-radius: 10px; /* optional, for styling */
+}
   </style>
 </head>
 <body>
@@ -333,8 +341,9 @@
 
 <div id="solution1" class="modal">
   <div class="modal-content">
-    <span class="close" data-target="solution1">&times;</span>
-    <p><img src="solutions-1/q1.png" class="solution-img" onclick="openImage(this)"></p>
+    <span class="close">&times;</span>
+    <h2>Solution 1</h2>
+    <img src="solution1.png" alt="Solution 1 image">
   </div>
 </div>
 
