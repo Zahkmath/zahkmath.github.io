@@ -279,6 +279,36 @@ input { display:block; margin:10px 0; padding:8px; }
 <div class="back">
 <a href="sl-ai.html">⬅ Back to SL AI</a>
 </div>
+<script>
 
+// OPEN + RESET
+document.addEventListener("click", e=>{
+if(e.target.classList.contains("openModal")){
+let m=document.getElementById(e.target.dataset.target);
+m.style.display="block";
+m.querySelectorAll("input").forEach(i=>i.value="");
+m.querySelectorAll("span").forEach(s=>s.textContent="");
+}
+});
+
+// CLOSE
+document.addEventListener("click", e=>{
+if(e.target.classList.contains("close")||e.target.classList.contains("modal")){
+e.target.closest(".modal").style.display="none";
+}
+});
+
+// CHECK
+function check(id,correct,res){
+let v=parseFloat(document.getElementById(id).value);
+let r=document.getElementById(res);
+if(!isNaN(v)&&Math.abs(v-correct)<0.01){
+r.textContent="✅"; r.style.color="green";
+}else{
+r.textContent="❌"; r.style.color="red";
+}
+}
+
+</script>
 </body>
 </html>
