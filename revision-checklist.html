@@ -1,314 +1,119 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Revision Checklist Questions</title>
+<title>Question Example</title>
 
 <style>
-body { font-family: Arial; margin:0; background:#f4f6f9; text-align:center; }
+body { font-family: Arial; text-align:center; background:#f4f6f9; }
 
-header { background:#1e3a8a; color:white; padding:25px; }
-header h1 { margin:0; }
-
-ul { max-width:1000px; margin:30px auto; text-align:left; }
-
-.topic { font-weight:bold; margin-bottom:20px; }
-
-.buttons button {
-  margin:5px;
-  padding:10px 15px;
-  border:none;
-  border-radius:10px;
+button {
+  padding:12px 18px;
   background:#1e3a8a;
   color:white;
+  border:none;
+  border-radius:10px;
   cursor:pointer;
 }
-.buttons button:hover { background:#163080; }
 
+button:hover { background:#163080; }
+
+/* Modal */
 .modal {
   display:none;
   position:fixed;
+  top:0; left:0;
   width:100%;
   height:100%;
   background:rgba(0,0,0,0.6);
-  top:0; left:0;
 }
 
 .modal-content {
   background:white;
-  margin:5% auto;
-  padding:25px;
+  margin:10% auto;
+  padding:20px;
   width:90%;
-  max-width:700px;
-  border-radius:12px;
+  max-width:500px;
+  border-radius:10px;
   position:relative;
   text-align:left;
 }
 
 .close {
   position:absolute;
-  right:15px;
-  top:10px;
-  font-size:28px;
+  right:10px;
+  top:5px;
+  font-size:25px;
   cursor:pointer;
 }
 
-input { display:block; margin:10px 0; padding:8px; }
-
-.solution-image {
-  max-width:100%;
-  max-height:70vh;
-  display:block;
-  margin:auto;
+input {
+  padding:8px;
+  margin-top:10px;
 }
-
-.back { margin:30px; }
 
 </style>
 </head>
 
 <body>
 
-<header>
-<h1>Revision Checklist Questions</h1>
-</header>
+<h2>Revision Questions</h2>
 
-<ul>
+<!-- BUTTON -->
+<button onclick="openModal()">Question 1</button>
 
-<li class="topic">Convert between hours, minutes and seconds
-<div class="buttons">
-<button class="openModal" data-target="q1">Q1</button>
-<button class="openModal" data-target="s1">Solution</button>
+<!-- MODAL -->
+<div id="q1" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
 
-<button class="openModal" data-target="q2">Q2</button>
-<button class="openModal" data-target="s2">Solution</button>
+    <p>A train journey lasts 2 hours 36 minutes. Write the total time in hours.</p>
+
+    <input id="answer" placeholder="Enter answer">
+
+    <br>
+    <button onclick="check()">Check</button>
+
+    <span id="result"></span>
+
+  </div>
 </div>
-</li>
 
-<li class="topic">Convert between distance units, km, m, cm
-<div class="buttons">
-<button class="openModal" data-target="q3">Q3</button>
-<button class="openModal" data-target="s3">Solution</button>
-
-<button class="openModal" data-target="q4">Q4</button>
-<button class="openModal" data-target="s4">Solution</button>
-</div>
-</li>
-
-<li class="topic">Find percentage of amount
-<div class="buttons">
-<button class="openModal" data-target="q5">Q5</button>
-<button class="openModal" data-target="s5">Solution</button>
-</div>
-</li>
-
-<li class="topic">Percentage increase and decrease
-<div class="buttons">
-<button class="openModal" data-target="q6">Q6</button>
-<button class="openModal" data-target="s6">Solution</button>
-</div>
-</li>
-
-<li class="topic">Index laws – negative index law
-<div class="buttons">
-<button class="openModal" data-target="q7">Q7</button>
-<button class="openModal" data-target="s7">Solution</button>
-</div>
-</li>
-
-<li class="topic">Setting up equations and solving simultaneously
-<div class="buttons">
-<button class="openModal" data-target="q8">Q8</button>
-<button class="openModal" data-target="s8">Solution</button>
-
-<button class="openModal" data-target="q9">Q9</button>
-<button class="openModal" data-target="s9">Solution</button>
-</div>
-</li>
-
-<li class="topic">Rounding to given significant figures
-<div class="buttons">
-<button class="openModal" data-target="q10">Q10</button>
-<button class="openModal" data-target="s10">Solution</button>
-</div>
-</li>
-
-<li class="topic">Exact value
-<div class="buttons">
-<button class="openModal" data-target="q11">Q11</button>
-<button class="openModal" data-target="s11">Solution</button>
-</div>
-</li>
-
-<li class="topic">Lower bound and upper bound
-<div class="buttons">
-<button class="openModal" data-target="q12">Q12</button>
-<button class="openModal" data-target="s12">Solution</button>
-</div>
-</li>
-
-<li class="topic">Percentage error
-<div class="buttons">
-<button class="openModal" data-target="q13">Q13</button>
-<button class="openModal" data-target="s13">Solution</button>
-</div>
-</li>
-
-<li class="topic">Standard form
-<div class="buttons">
-<button class="openModal" data-target="q14">Q14</button>
-<button class="openModal" data-target="s14">Solution</button>
-</div>
-</li>
-
-<li class="topic">Arithmetic sequence
-<div class="buttons">
-<button class="openModal" data-target="q15">Q15</button>
-<button class="openModal" data-target="s15">Solution</button>
-</div>
-</li>
-
-<li class="topic">Arithmetic series
-<div class="buttons">
-<button class="openModal" data-target="q16">Q16</button>
-<button class="openModal" data-target="s16">Solution</button>
-</div>
-</li>
-
-<li class="topic">Geometric sequence
-<div class="buttons">
-<button class="openModal" data-target="q17">Q17</button>
-<button class="openModal" data-target="s17">Solution</button>
-</div>
-</li>
-
-<li class="topic">Geometric series
-<div class="buttons">
-<button class="openModal" data-target="q18">Q18</button>
-<button class="openModal" data-target="s18">Solution</button>
-</div>
-</li>
-
-<li class="topic">Rounding money
-<div class="buttons">
-<button class="openModal" data-target="q19">Q19</button>
-<button class="openModal" data-target="s19">Solution</button>
-</div>
-</li>
-
-<li class="topic">Simple interest
-<div class="buttons">
-<button class="openModal" data-target="q20">Q20</button>
-<button class="openModal" data-target="s20">Solution</button>
-</div>
-</li>
-
-<li class="topic">Compound interest
-<div class="buttons">
-<button class="openModal" data-target="q21">Q21</button>
-<button class="openModal" data-target="s21">Solution</button>
-</div>
-</li>
-
-<li class="topic">Finance App – finding interest rate
-<div class="buttons">
-<button class="openModal" data-target="q22">Q22</button>
-<button class="openModal" data-target="s22">Solution</button>
-</div>
-</li>
-
-<li class="topic">Inflation
-<div class="buttons">
-<button class="openModal" data-target="q23">Q23</button>
-<button class="openModal" data-target="s23">Solution</button>
-</div>
-</li>
-
-<li class="topic">Annuity
-<div class="buttons">
-<button class="openModal" data-target="q24">Q24</button>
-<button class="openModal" data-target="s24">Solution</button>
-</div>
-</li>
-
-<li class="topic">Real interest rate
-<div class="buttons">
-<button class="openModal" data-target="q25">Q25</button>
-<button class="openModal" data-target="s25">Solution</button>
-</div>
-</li>
-
-<li class="topic">Annual depreciation
-<div class="buttons">
-<button class="openModal" data-target="q26">Q26</button>
-<button class="openModal" data-target="s26">Solution</button>
-</div>
-</li>
-
-<li class="topic">Payments
-<div class="buttons">
-<button class="openModal" data-target="q27">Q27</button>
-<button class="openModal" data-target="s27">Solution</button>
-</div>
-</li>
-
-<li class="topic">Amortization
-<div class="buttons">
-<button class="openModal" data-target="q28">Q28</button>
-<button class="openModal" data-target="s28">Solution</button>
-</div>
-</li>
-
-<li class="topic">Logarithms
-<div class="buttons">
-<button class="openModal" data-target="q29">Q29</button>
-<button class="openModal" data-target="s29">Solution</button>
-</div>
-</li>
-
-<li class="topic">Approximating and estimating
-<div class="buttons">
-<button class="openModal" data-target="q30">Q30</button>
-<button class="openModal" data-target="s30">Solution</button>
-</div>
-</li>
-
-</ul>
-
-<!-- KEEP YOUR EXISTING MODALS + SCRIPT HERE -->
-
-<div class="back">
-<a href="sl-ai.html">⬅ Back to SL AI</a>
-</div>
 <script>
 
-// OPEN + RESET
-document.addEventListener("click", e=>{
-if(e.target.classList.contains("openModal")){
-let m=document.getElementById(e.target.dataset.target);
-m.style.display="block";
-m.querySelectorAll("input").forEach(i=>i.value="");
-m.querySelectorAll("span").forEach(s=>s.textContent="");
+// OPEN
+function openModal(){
+  document.getElementById("q1").style.display="block";
+  document.getElementById("answer").value="";
+  document.getElementById("result").textContent="";
 }
-});
 
 // CLOSE
-document.addEventListener("click", e=>{
-if(e.target.classList.contains("close")||e.target.classList.contains("modal")){
-e.target.closest(".modal").style.display="none";
+function closeModal(){
+  document.getElementById("q1").style.display="none";
 }
-});
 
-// CHECK
-function check(id,correct,res){
-let v=parseFloat(document.getElementById(id).value);
-let r=document.getElementById(res);
-if(!isNaN(v)&&Math.abs(v-correct)<0.01){
-r.textContent="✅"; r.style.color="green";
-}else{
-r.textContent="❌"; r.style.color="red";
+// CLOSE OUTSIDE
+window.onclick=function(e){
+  if(e.target.classList.contains("modal")){
+    e.target.style.display="none";
+  }
 }
+
+// CHECK ANSWER
+function check(){
+  let value=parseFloat(document.getElementById("answer").value);
+  let result=document.getElementById("result");
+
+  if(!isNaN(value) && Math.abs(value-2.6)<0.01){
+    result.textContent=" ✅";
+    result.style.color="green";
+  } else {
+    result.textContent=" ❌";
+    result.style.color="red";
+  }
 }
 
 </script>
+
 </body>
 </html>
