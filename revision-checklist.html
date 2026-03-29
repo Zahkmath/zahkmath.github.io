@@ -1,209 +1,149 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Revision Checklist</title>
+  <title>Revision Checklist Questions</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin:0; background-color: #f4f6f9; text-align: center;}
+    header { background-color: #1e3a8a; color: white; padding: 25px; }
+    header h1 { margin:0; font-size:36px;}
+    ul { list-style-type: disc; padding-left: 40px; text-align: left; max-width: 1000px; margin: 30px auto;}
+    .topic { margin-bottom: 25px; }
+    .buttons { margin-top: 5px; }
+    .buttons button { margin-right: 12px; margin-top: 5px; padding: 12px 18px; border-radius: 12px; border: none; cursor: pointer; background-color: #1e3a8a; color: white; font-size:16px; transition:0.3s;}
+    .buttons button:hover { background-color:#163080; }
 
-<style>
-body { font-family: Arial; margin:0; background:#f4f6f9; text-align:center; }
-
-header {
-  background:#1e3a8a;
-  color:white;
-  padding:20px;
-}
-
-/* LIST */
-ul {
-  text-align:left;
-  width:90%;
-  max-width:800px;
-  margin:20px auto;
-  padding-left:20px;
-}
-
-li {
-  margin-bottom:15px;
-  line-height:1.8;
-}
-
-/* BUTTONS */
-button {
-  padding:6px 10px;
-  border:none;
-  border-radius:8px;
-  background:#1e3a8a;
-  color:white;
-  cursor:pointer;
-  margin-left:5px;
-  font-size:13px;
-}
-
-button:hover { background:#163080; }
-
-/* INPUT */
-input {
-  padding:6px;
-  margin-left:10px;
-  width:180px;
-}
-
-/* FEEDBACK */
-.feedback {
-  margin-left:10px;
-  font-weight:bold;
-}
-
-/* MODAL */
-.modal {
-  display:none;
-  position:fixed;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.6);
-  top:0; left:0;
-}
-
-.modal-content {
-  background:white;
-  margin:8% auto;
-  padding:20px;
-  width:90%;
-  max-width:600px;
-  border-radius:12px;
-  position:relative;
-}
-
-.close {
-  position:absolute;
-  right:15px;
-  top:10px;
-  font-size:28px;
-  cursor:pointer;
-}
-
-.solution-image {
-  max-width:100%;
-}
-
-</style>
+    /* Modal */
+    .modal { display:none; position:fixed; z-index:100; left:0; top:0; width:100%; height:100%; overflow:auto; background-color: rgba(0,0,0,0.6);}
+    .modal-content { background-color: #fefefe; margin:5% auto; padding:25px; border-radius:15px; width:90%; max-width:650px; box-shadow:0 4px 10px rgba(0,0,0,0.2); position: relative; text-align:left;}
+    .close { color:#aaa; float:right; font-size:28px; font-weight:bold; cursor:pointer;}
+    .close:hover { color:black; }
+    input { padding:10px; width:230px; border-radius:8px; border:1px solid #ccc; margin:8px 10px 8px 0; }
+    button.check { padding:8px 14px; border-radius:8px; border:none; background-color:#1e3a8a; color:white; cursor:pointer; font-size:14px; }
+    button.check:hover { background-color:#163080; }
+    .modal-content img { max-width:100%; height:auto; display:block; margin:15px auto; border-radius:10px; }
+    span { font-weight:bold; margin-left:10px; }
+  </style>
 </head>
-
 <body>
 
 <header>
-<h1>Revision Checklist Questions</h1>
+  <h1>Revision Checklist Questions</h1>
 </header>
 
 <ul>
-
-  <!-- Q1 -->
-  <li>
-    Convert between hours, minutes and seconds.
-    <button onclick="openQuestion(1)">Question 1</button>
-    <button onclick="openSolution(1)">Solution 1</button>
-
-    <input id="a1" placeholder="Answer">
-    <button onclick="check(1)">Check</button>
-    <span id="f1" class="feedback"></span>
+  <!-- Topics 1-30 -->
+  <li class="topic">Convert between hours, minutes and seconds
+    <div class="buttons">
+      <button class="openModal" data-target="modalQ1">Question 1</button>
+      <button class="openModal" data-target="solution1">Solution 1</button>
+    </div>
   </li>
-
-  <!-- Q2 -->
-  <li>
-    Convert between distance units, km, m, cm.
-    <button onclick="openQuestion(2)">Question 2</button>
-    <button onclick="openSolution(2)">Solution 2</button>
-
-    <input id="a2" placeholder="Answer">
-    <button onclick="check(2)">Check</button>
-    <span id="f2" class="feedback"></span>
+  <li class="topic">Topic 2
+    <div class="buttons">
+      <button class="openModal" data-target="modalQ2">Question 2</button>
+      <button class="openModal" data-target="solution2">Solution 2</button>
+    </div>
   </li>
-
-  <!-- PLACEHOLDER UP TO Q27 -->
-  <!-- Copy pattern below for Q3–Q27 -->
-
-  <li>
-    Question 3 Topic Placeholder
-    <button onclick="openQuestion(3)">Question 3</button>
-    <button onclick="openSolution(3)">Solution 3</button>
-
-    <input id="a3" placeholder="Answer">
-    <button onclick="check(3)">Check</button>
-    <span id="f3" class="feedback"></span>
+  <li class="topic">Topic 3
+    <div class="buttons">
+      <button class="openModal" data-target="modalQ3">Question 3</button>
+      <button class="openModal" data-target="solution3">Solution 3</button>
+    </div>
   </li>
-
-  <li>
-    Question 4 Topic Placeholder
-    <button onclick="openQuestion(4)">Question 4</button>
-    <button onclick="openSolution(4)">Solution 4</button>
-
-    <input id="a4" placeholder="Answer">
-    <button onclick="check(4)">Check</button>
-    <span id="f4" class="feedback"></span>
-  </li>
-
-  <!-- Continue same pattern until Q27 -->
-
+  <!-- Repeat similarly for topics 4–30 -->
 </ul>
 
-<!-- QUESTION MODAL -->
-<div id="qModal" class="modal">
+<!-- Modals -->
+
+<!-- Question 1 -->
+<div id="modalQ1" class="modal">
   <div class="modal-content">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <p id="qText"></p>
+    <span class="close" data-target="modalQ1">&times;</span>
+    <p>A train journey lasts 2 hours 36 minutes. Write the total time in hours.</p>
+    <input type="text" id="q1" placeholder="Type your answer">
+    <button class="check" onclick="checkNumber('q1',2.6,'r1')">Check</button>
+    <span id="r1"></span>
   </div>
 </div>
 
-<!-- SOLUTION MODAL -->
-<div id="sModal" class="modal">
+<div id="solution1" class="modal">
   <div class="modal-content">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <img id="solImg" class="solution-image">
+    <span class="close" data-target="solution1">&times;</span>
+    <h2>Solution 1</h2>
+    <img src="q1.png" alt="Solution 1">
   </div>
 </div>
+
+<!-- Question 2 -->
+<div id="modalQ2" class="modal">
+  <div class="modal-content">
+    <span class="close" data-target="modalQ2">&times;</span>
+    <p>Question 2 text here</p>
+  </div>
+</div>
+<div id="solution2" class="modal">
+  <div class="modal-content">
+    <span class="close" data-target="solution2">&times;</span>
+    <h2>Solution 2</h2>
+    <img src="q2.png" alt="Solution 2">
+  </div>
+</div>
+
+<!-- Question 3 -->
+<div id="modalQ3" class="modal">
+  <div class="modal-content">
+    <span class="close" data-target="modalQ3">&times;</span>
+    <p>Question 3 text here</p>
+  </div>
+</div>
+<div id="solution3" class="modal">
+  <div class="modal-content">
+    <span class="close" data-target="solution3">&times;</span>
+    <h2>Solution 3</h2>
+    <img src="q3.png" alt="Solution 3">
+  </div>
+</div>
+
+<!-- Add modals Q4–Q30 in the same pattern -->
+<!-- You can copy the above structure and increment IDs to match Q4, Q5 ... Q30 -->
 
 <script>
+  // Open modal
+  document.querySelectorAll('.openModal').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const modal = document.getElementById(btn.dataset.target);
+      modal.style.display = 'block';
+    });
+  });
 
-let currentQ = 0;
+  // Close modal
+  document.querySelectorAll('.close').forEach(span => {
+    span.addEventListener('click', () => {
+      const modal = document.getElementById(span.dataset.target);
+      modal.style.display = 'none';
+    });
+  });
 
-// QUESTION (optional text popup)
-function openQuestion(n){
-  document.getElementById("qModal").style.display="block";
-  document.getElementById("qText").textContent="Question " + n;
-  currentQ=n;
-}
-
-// SOLUTION IMAGE
-function openSolution(n){
-  document.getElementById("sModal").style.display="block";
-  document.getElementById("solImg").src="q"+n+".png";
-}
-
-// CLOSE MODALS
-function closeModal(){
-  document.getElementById("qModal").style.display="none";
-  document.getElementById("sModal").style.display="none";
-}
-
-// CHECK ANSWER (TEXT, NUMBERS, SYMBOLS)
-function check(n){
-  let val=document.getElementById("a"+n).value.trim();
-  let fb=document.getElementById("f"+n);
-
-  // placeholder logic (you will replace later with real answers)
-  if(val.length>0){
-    fb.textContent="✔";
-    fb.style.color="green";
-  } else {
-    fb.textContent="✘";
-    fb.style.color="red";
+  // Close modal when clicking outside content
+  window.onclick = function(event) {
+    if (event.target.classList.contains('modal')) {
+      event.target.style.display = "none";
+    }
   }
-}
 
+  // Check answer function
+  function checkNumber(inputId, correct, resultId) {
+    const value = parseFloat(document.getElementById(inputId).value);
+    const span = document.getElementById(resultId);
+    if (!isNaN(value) && Math.abs(value - correct) < 0.01) {
+      span.textContent = "✅ Correct!";
+      span.style.color = "green";
+    } else {
+      span.textContent = "❌ Try again.";
+      span.style.color = "red";
+    }
+  }
 </script>
-<!-- BACK -->
-<div class="back">
-  <a href="sl-ai.html">⬅ Back to SL AI</a>
-</div>
 
 </body>
 </html>
