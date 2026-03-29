@@ -12,17 +12,17 @@ header {
   padding:20px;
 }
 
-/* SECTION HEADINGS */
+/* SECTION TITLE */
 .section-title {
   text-align:left;
-  margin:20px auto 10px;
   width:90%;
   max-width:800px;
+  margin:20px auto 10px;
   font-weight:bold;
   font-size:18px;
 }
 
-/* LIST */
+/* BULLET LIST */
 ul {
   text-align:left;
   width:90%;
@@ -31,30 +31,22 @@ ul {
   padding-left:20px;
 }
 
-/* BUTTON */
+li {
+  margin-bottom:10px;
+}
+
+/* BUTTONS */
 button {
-  padding:10px 15px;
+  padding:8px 12px;
   border:none;
-  border-radius:10px;
+  border-radius:8px;
   background:#1e3a8a;
   color:white;
   cursor:pointer;
-  margin:5px;
+  margin:3px;
 }
 
 button:hover { background:#163080; }
-
-/* INPUT + CHECK */
-.answer-row {
-  display:flex;
-  gap:10px;
-  margin-top:10px;
-}
-
-.answer-row input {
-  flex:1;
-  padding:8px;
-}
 
 /* MODAL */
 .modal {
@@ -85,6 +77,17 @@ button:hover { background:#163080; }
   cursor:pointer;
 }
 
+.answer-row {
+  display:flex;
+  gap:10px;
+  margin-top:10px;
+}
+
+.answer-row input {
+  flex:1;
+  padding:8px;
+}
+
 .back {
   margin:30px;
 }
@@ -106,86 +109,102 @@ button:hover { background:#163080; }
 <!-- SECTION 1 -->
 <div class="section-title">Convert between hours, minutes and seconds</div>
 <ul>
-  <li>Q1–Q13 (placeholder questions)</li>
+  <!-- 1–13 PLACEHOLDERS -->
+  <li>
+    Q1 Placeholder
+    <button onclick="openModal(1,'question')">Question</button>
+    <button onclick="openModal(1,'solution')">Solution</button>
+  </li>
+
+  <li>
+    Q2 Placeholder
+    <button onclick="openModal(2,'question')">Question</button>
+    <button onclick="openModal(2,'solution')">Solution</button>
+  </li>
+
+  <li>
+    Q3 Placeholder
+    <button onclick="openModal(3,'question')">Question</button>
+    <button onclick="openModal(3,'solution')">Solution</button>
+  </li>
+
+  <!-- repeat pattern -->
+  <li>Q4 Placeholder <button onclick="openModal(4,'question')">Question</button> <button onclick="openModal(4,'solution')">Solution</button></li>
+  <li>Q5 Placeholder <button onclick="openModal(5,'question')">Question</button> <button onclick="openModal(5,'solution')">Solution</button></li>
+  <li>Q6 Placeholder <button onclick="openModal(6,'question')">Question</button> <button onclick="openModal(6,'solution')">Solution</button></li>
+  <li>Q7 Placeholder <button onclick="openModal(7,'question')">Question</button> <button onclick="openModal(7,'solution')">Solution</button></li>
+  <li>Q8 Placeholder <button onclick="openModal(8,'question')">Question</button> <button onclick="openModal(8,'solution')">Solution</button></li>
+  <li>Q9 Placeholder <button onclick="openModal(9,'question')">Question</button> <button onclick="openModal(9,'solution')">Solution</button></li>
+  <li>Q10 Placeholder <button onclick="openModal(10,'question')">Question</button> <button onclick="openModal(10,'solution')">Solution</button></li>
+  <li>Q11 Placeholder <button onclick="openModal(11,'question')">Question</button> <button onclick="openModal(11,'solution')">Solution</button></li>
+  <li>Q12 Placeholder <button onclick="openModal(12,'question')">Question</button> <button onclick="openModal(12,'solution')">Solution</button></li>
+  <li>Q13 Placeholder <button onclick="openModal(13,'question')">Question</button> <button onclick="openModal(13,'solution')">Solution</button></li>
 </ul>
 
 <!-- SECTION 2 -->
 <div class="section-title">Convert between distance units, km, m, cm</div>
 <ul>
-  <li>Q14–Q27 (placeholder questions)</li>
+  <!-- 14–27 PLACEHOLDERS -->
+  <li>Q14 Placeholder <button onclick="openModal(14,'question')">Question</button> <button onclick="openModal(14,'solution')">Solution</button></li>
+  <li>Q15 Placeholder <button onclick="openModal(15,'question')">Question</button> <button onclick="openModal(15,'solution')">Solution</button></li>
+  <li>Q16 Placeholder <button onclick="openModal(16,'question')">Question</button> <button onclick="openModal(16,'solution')">Solution</button></li>
+  <li>Q17 Placeholder <button onclick="openModal(17,'question')">Question</button> <button onclick="openModal(17,'solution')">Solution</button></li>
+  <li>Q18 Placeholder <button onclick="openModal(18,'question')">Question</button> <button onclick="openModal(18,'solution')">Solution</button></li>
+  <li>Q19 Placeholder <button onclick="openModal(19,'question')">Question</button> <button onclick="openModal(19,'solution')">Solution</button></li>
+  <li>Q20 Placeholder <button onclick="openModal(20,'question')">Question</button> <button onclick="openModal(20,'solution')">Solution</button></li>
+  <li>Q21 Placeholder <button onclick="openModal(21,'question')">Question</button> <button onclick="openModal(21,'solution')">Solution</button></li>
+  <li>Q22 Placeholder <button onclick="openModal(22,'question')">Question</button> <button onclick="openModal(22,'solution')">Solution</button></li>
+  <li>Q23 Placeholder <button onclick="openModal(23,'question')">Question</button> <button onclick="openModal(23,'solution')">Solution</button></li>
+  <li>Q24 Placeholder <button onclick="openModal(24,'question')">Question</button> <button onclick="openModal(24,'solution')">Solution</button></li>
+  <li>Q25 Placeholder <button onclick="openModal(25,'question')">Question</button> <button onclick="openModal(25,'solution')">Solution</button></li>
+  <li>Q26 Placeholder <button onclick="openModal(26,'question')">Question</button> <button onclick="openModal(26,'solution')">Solution</button></li>
+  <li>Q27 Placeholder <button onclick="openModal(27,'question')">Question</button> <button onclick="openModal(27,'solution')">Solution</button></li>
 </ul>
-
-<!-- BUTTONS (27 PLACEHOLDER QUESTIONS) -->
-<div>
-<script>
-for(let i=1;i<=27;i++){
-  document.write(`<button onclick="openModal(${i})">Question ${i}</button>`);
-}
-</script>
-</div>
 
 <!-- MODAL -->
 <div id="modal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeModal()">&times;</span>
 
-    <p id="questionText"></p>
+    <p id="text"></p>
 
     <div class="answer-row">
-      <input id="answerInput" placeholder="Enter answer (numbers, letters, symbols)">
-      <button onclick="check()">Check</button>
+      <input id="input" placeholder="Enter answer (numbers, letters, symbols)">
     </div>
-
-    <span id="result"></span>
 
   </div>
 </div>
 
-<!-- BACK -->
 <div class="back">
   <a href="sl-ai.html">⬅ Back to SL AI</a>
 </div>
 
 <script>
 
-let currentQuestion = 0;
-
-// OPEN MODAL
-function openModal(q){
-  currentQuestion = q;
+function openModal(num,type){
   document.getElementById("modal").style.display="block";
 
-  document.getElementById("answerInput").value="";
-  document.getElementById("result").textContent="";
+  let text=document.getElementById("text");
+  let input=document.getElementById("input");
 
-  document.getElementById("questionText").textContent =
-    "Question " + q + " (add your actual question text here)";
+  input.value="";
+
+  if(type==="question"){
+    text.textContent="Question "+num+" (replace with actual question)";
+    input.style.display="block";
+  } else {
+    text.textContent="Solution "+num+" (replace with worked solution)";
+    input.style.display="none";
+  }
 }
 
-// CLOSE MODAL
 function closeModal(){
   document.getElementById("modal").style.display="none";
 }
 
-// CLICK OUTSIDE
 window.onclick=function(e){
   if(e.target.classList.contains("modal")){
     e.target.style.display="none";
-  }
-}
-
-// CHECK ANSWER (TEXT-BASED: numbers, letters, symbols)
-function check(){
-  let value=document.getElementById("answerInput").value.trim();
-  let result=document.getElementById("result");
-
-  // placeholder logic (you can later replace with real answers)
-  if(value.length > 0){
-    result.textContent=" ✅ Answer submitted";
-    result.style.color="green";
-  } else {
-    result.textContent=" ❌ Please enter an answer";
-    result.style.color="red";
   }
 }
 
