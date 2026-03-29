@@ -6,14 +6,32 @@
 <style>
 body { font-family: Arial; margin:0; background:#f4f6f9; text-align:center; }
 
-/* HEADER */
 header {
   background:#1e3a8a;
   color:white;
   padding:20px;
 }
 
-/* BUTTONS */
+/* SECTION HEADINGS */
+.section-title {
+  text-align:left;
+  margin:20px auto 10px;
+  width:90%;
+  max-width:800px;
+  font-weight:bold;
+  font-size:18px;
+}
+
+/* LIST */
+ul {
+  text-align:left;
+  width:90%;
+  max-width:800px;
+  margin:auto;
+  padding-left:20px;
+}
+
+/* BUTTON */
 button {
   padding:10px 15px;
   border:none;
@@ -26,7 +44,7 @@ button {
 
 button:hover { background:#163080; }
 
-/* INPUT + CHECK INLINE */
+/* INPUT + CHECK */
 .answer-row {
   display:flex;
   gap:10px;
@@ -59,7 +77,6 @@ button:hover { background:#163080; }
   text-align:left;
 }
 
-/* CLOSE BUTTON */
 .close {
   position:absolute;
   right:15px;
@@ -68,15 +85,6 @@ button:hover { background:#163080; }
   cursor:pointer;
 }
 
-/* IMAGE */
-.solution-image {
-  max-width:100%;
-  max-height:70vh;
-  display:block;
-  margin:auto;
-}
-
-/* BACK */
 .back {
   margin:30px;
 }
@@ -86,7 +94,6 @@ button:hover { background:#163080; }
   color:#555;
   font-weight:bold;
 }
-
 </style>
 </head>
 
@@ -96,34 +103,41 @@ button:hover { background:#163080; }
 <h1>Revision Checklist Questions</h1>
 </header>
 
-<br>
+<!-- SECTION 1 -->
+<div class="section-title">Convert between hours, minutes and seconds</div>
+<ul>
+  <li>Q1–Q13 (placeholder questions)</li>
+</ul>
 
-<!-- BUTTONS -->
-<button onclick="openModal('q1')">Question 1</button>
-<button onclick="openModal('s1')">Solution 1</button>
+<!-- SECTION 2 -->
+<div class="section-title">Convert between distance units, km, m, cm</div>
+<ul>
+  <li>Q14–Q27 (placeholder questions)</li>
+</ul>
 
-<!-- QUESTION MODAL -->
-<div id="q1" class="modal">
+<!-- BUTTONS (27 PLACEHOLDER QUESTIONS) -->
+<div>
+<script>
+for(let i=1;i<=27;i++){
+  document.write(`<button onclick="openModal(${i})">Question ${i}</button>`);
+}
+</script>
+</div>
+
+<!-- MODAL -->
+<div id="modal" class="modal">
   <div class="modal-content">
-    <span class="close" onclick="closeModal('q1')">&times;</span>
+    <span class="close" onclick="closeModal()">&times;</span>
 
-    <p>A train journey lasts 2 hours 36 minutes. Write the total time in hours.</p>
+    <p id="questionText"></p>
 
     <div class="answer-row">
-      <input id="answer1" placeholder="Enter answer">
+      <input id="answerInput" placeholder="Enter answer (numbers, letters, symbols)">
       <button onclick="check()">Check</button>
     </div>
 
-    <span id="result1"></span>
+    <span id="result"></span>
 
-  </div>
-</div>
-
-<!-- SOLUTION MODAL -->
-<div id="s1" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal('s1')">&times;</span>
-    <img src="solutions-1/q1.png" class="solution-image">
   </div>
 </div>
 
@@ -134,40 +148,43 @@ button:hover { background:#163080; }
 
 <script>
 
-// OPEN MODAL + RESET
-function openModal(id){
-  let m=document.getElementById(id);
-  m.style.display="block";
+let currentQuestion = 0;
 
-  let input=document.getElementById("answer1");
-  let result=document.getElementById("result1");
+// OPEN MODAL
+function openModal(q){
+  currentQuestion = q;
+  document.getElementById("modal").style.display="block";
 
-  if(input) input.value="";
-  if(result) result.textContent="";
+  document.getElementById("answerInput").value="";
+  document.getElementById("result").textContent="";
+
+  document.getElementById("questionText").textContent =
+    "Question " + q + " (add your actual question text here)";
 }
 
-// CLOSE
-function closeModal(id){
-  document.getElementById(id).style.display="none";
+// CLOSE MODAL
+function closeModal(){
+  document.getElementById("modal").style.display="none";
 }
 
-// CLOSE OUTSIDE
+// CLICK OUTSIDE
 window.onclick=function(e){
   if(e.target.classList.contains("modal")){
     e.target.style.display="none";
   }
 }
 
-// CHECK
+// CHECK ANSWER (TEXT-BASED: numbers, letters, symbols)
 function check(){
-  let value=parseFloat(document.getElementById("answer1").value);
-  let result=document.getElementById("result1");
+  let value=document.getElementById("answerInput").value.trim();
+  let result=document.getElementById("result");
 
-  if(!isNaN(value) && Math.abs(value-2.6)<0.01){
-    result.textContent=" ✅";
+  // placeholder logic (you can later replace with real answers)
+  if(value.length > 0){
+    result.textContent=" ✅ Answer submitted";
     result.style.color="green";
   } else {
-    result.textContent=" ❌";
+    result.textContent=" ❌ Please enter an answer";
     result.style.color="red";
   }
 }
