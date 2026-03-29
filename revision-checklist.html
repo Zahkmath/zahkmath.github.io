@@ -1,238 +1,214 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Revision Checklist Questions</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin:0; background-color: #f4f6f9; text-align: center;}
-    header { background-color: #1e3a8a; color: white; padding: 25px; }
-    header h1 { margin:0; font-size:36px;}
-    ul { list-style-type: disc; padding-left: 40px; text-align: left; max-width: 1000px; margin: 30px auto;}
-    .topic { margin-bottom: 25px; color: black; font-weight: bold; }
-    .buttons { margin-top: 5px; }
-    .buttons button { margin-right: 12px; margin-top: 5px; padding: 12px 18px; border-radius: 12px; border: none; cursor: pointer; background-color: #1e3a8a; color: white; font-size:16px; transition:0.3s;}
-    .buttons button:hover { background-color:#163080; }
-    input { padding:10px; width:230px; border-radius:8px; border:1px solid #ccc; margin:8px 10px 8px 0; display:block; }
-    button.check { padding:8px 14px; border-radius:8px; border:none; background-color:#1e3a8a; color:white; cursor:pointer; font-size:14px; }
-    button.check:hover { background-color:#163080; }
+<title>Revision Checklist</title>
 
-    /* Modal styles */
-    .modal { display:none; position:fixed; z-index:100; left:0; top:0; width:100%; height:100%; overflow:auto; background-color: rgba(0,0,0,0.6);}
-    .modal-content { background-color: #fefefe; margin:5% auto; padding:25px; border-radius:15px; width:90%; max-width:800px; box-shadow:0 4px 10px rgba(0,0,0,0.2); position: relative; text-align:left;}
-    .close { position:absolute; top:15px; right:20px; color:#aaa; font-size:28px; font-weight:bold; cursor:pointer; z-index:10; }
-    .close:hover { color:black; }
-    .solution-image { max-width: 100%; max-height: 70vh; height: auto; display:block; margin:15px auto; border-radius:10px; }
-  </style>
+<style>
+body { font-family: Arial; margin:0; background:#f4f6f9; text-align:center; }
+
+header { background:#1e3a8a; color:white; padding:25px; }
+header h1 { margin:0; }
+
+ul { max-width:1000px; margin:30px auto; text-align:left; }
+
+.topic { font-weight:bold; margin-bottom:20px; }
+
+.buttons button {
+  margin:5px;
+  padding:10px 15px;
+  border:none;
+  border-radius:10px;
+  background:#1e3a8a;
+  color:white;
+  cursor:pointer;
+}
+.buttons button:hover { background:#163080; }
+
+.modal {
+  display:none;
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.6);
+  top:0; left:0;
+}
+
+.modal-content {
+  background:white;
+  margin:5% auto;
+  padding:25px;
+  width:90%;
+  max-width:700px;
+  border-radius:12px;
+  position:relative;
+  text-align:left;
+}
+
+.close {
+  position:absolute;
+  right:15px;
+  top:10px;
+  font-size:28px;
+  cursor:pointer;
+}
+
+input { display:block; margin:10px 0; padding:8px; }
+
+.solution-image {
+  max-width:100%;
+  max-height:70vh;
+  display:block;
+  margin:auto;
+}
+
+.back { margin:30px; }
+
+</style>
 </head>
+
 <body>
 
 <header>
-  <h1>Revision Checklist Questions</h1>
+<h1>Revision Checklist Questions</h1>
 </header>
 
 <ul>
-  <!-- Topics with buttons -->
-  <li class="topic">Convert between hours, minutes and seconds
-    <div class="buttons">
-      <button class="openModal" data-target="modalQ1">Question 1</button>
-      <button class="openModal" data-target="solution1">Solution 1</button>
-      <button class="openModal" data-target="modalQ2">Question 2</button>
-      <button class="openModal" data-target="solution2">Solution 2</button>
-    </div>
-  </li>
 
-  <li class="topic">Convert between distance units, km, m, cm
-    <div class="buttons">
-      <button class="openModal" data-target="modalQ3">Question 3</button>
-      <button class="openModal" data-target="solution3">Solution 3</button>
-      <button class="openModal" data-target="modalQ4">Question 4</button>
-      <button class="openModal" data-target="solution4">Solution 4</button>
-    </div>
-  </li>
+<li class="topic">Convert between hours, minutes and seconds
+<div class="buttons">
+<button class="openModal" data-target="q1">Q1</button>
+<button class="openModal" data-target="s1">Solution</button>
 
-  <li class="topic">Find percentage of amount
-    <div class="buttons">
-      <button class="openModal" data-target="modalQ5">Question 5</button>
-      <button class="openModal" data-target="solution5">Solution 5</button>
-    </div>
-  </li>
-
-  <li class="topic">Percentage increase and decrease
-    <div class="buttons">
-      <button class="openModal" data-target="modalQ6">Question 6</button>
-      <button class="openModal" data-target="solution6">Solution 6</button>
-    </div>
-  </li>
-
-  <li class="topic">Index laws – negative index law
-    <div class="buttons">
-      <button class="openModal" data-target="modalQ7">Question 7</button>
-      <button class="openModal" data-target="solution7">Solution 7</button>
-    </div>
-  </li>
-
-  <li class="topic">Setting up equations and solving simultaneously
-    <div class="buttons">
-      <button class="openModal" data-target="modalQ8">Question 8</button>
-      <button class="openModal" data-target="solution8">Solution 8</button>
-      <button class="openModal" data-target="modalQ9">Question 9</button>
-      <button class="openModal" data-target="solution9">Solution 9</button>
-    </div>
-  </li>
-
-  <li class="topic">Rounding to given significant figures
-    <div class="buttons">
-      <button class="openModal" data-target="modalQ10">Question 10</button>
-      <button class="openModal" data-target="solution10">Solution 10</button>
-    </div>
-  </li>
-
-  <li class="topic">Additional Practice Questions
-  <div class="buttons">
-    <!-- Q11–Q20 -->
-    <button class="openModal" data-target="modalQ11">Question 11</button>
-    <button class="openModal" data-target="solution11">Solution 11</button>
-
-    <button class="openModal" data-target="modalQ12">Question 12</button>
-    <button class="openModal" data-target="solution12">Solution 12</button>
-
-    <button class="openModal" data-target="modalQ13">Question 13</button>
-    <button class="openModal" data-target="solution13">Solution 13</button>
-
-    <button class="openModal" data-target="modalQ14">Question 14</button>
-    <button class="openModal" data-target="solution14">Solution 14</button>
-
-    <button class="openModal" data-target="modalQ15">Question 15</button>
-    <button class="openModal" data-target="solution15">Solution 15</button>
-
-    <button class="openModal" data-target="modalQ16">Question 16</button>
-    <button class="openModal" data-target="solution16">Solution 16</button>
-
-    <button class="openModal" data-target="modalQ17">Question 17</button>
-    <button class="openModal" data-target="solution17">Solution 17</button>
-
-    <button class="openModal" data-target="modalQ18">Question 18</button>
-    <button class="openModal" data-target="solution18">Solution 18</button>
-
-    <button class="openModal" data-target="modalQ19">Question 19</button>
-    <button class="openModal" data-target="solution19">Solution 19</button>
-
-    <button class="openModal" data-target="modalQ20">Question 20</button>
-    <button class="openModal" data-target="solution20">Solution 20</button>
-
-    <!-- Q21–Q30 -->
-    <button class="openModal" data-target="modalQ21">Question 21</button>
-    <button class="openModal" data-target="solution21">Solution 21</button>
-
-    <button class="openModal" data-target="modalQ22">Question 22</button>
-    <button class="openModal" data-target="solution22">Solution 22</button>
-
-    <button class="openModal" data-target="modalQ23">Question 23</button>
-    <button class="openModal" data-target="solution23">Solution 23</button>
-
-    <button class="openModal" data-target="modalQ24">Question 24</button>
-    <button class="openModal" data-target="solution24">Solution 24</button>
-
-    <button class="openModal" data-target="modalQ25">Question 25</button>
-    <button class="openModal" data-target="solution25">Solution 25</button>
-
-    <button class="openModal" data-target="modalQ26">Question 26</button>
-    <button class="openModal" data-target="solution26">Solution 26</button>
-
-    <button class="openModal" data-target="modalQ27">Question 27</button>
-    <button class="openModal" data-target="solution27">Solution 27</button>
-
-    <button class="openModal" data-target="modalQ28">Question 28</button>
-    <button class="openModal" data-target="solution28">Solution 28</button>
-
-    <button class="openModal" data-target="modalQ29">Question 29</button>
-    <button class="openModal" data-target="solution29">Solution 29</button>
-
-    <button class="openModal" data-target="modalQ30">Question 30</button>
-    <button class="openModal" data-target="solution30">Solution 30</button>
-  </div>
+<button class="openModal" data-target="q2">Q2</button>
+<button class="openModal" data-target="s2">Solution</button>
+</div>
 </li>
- 
+
+<li class="topic">Convert between distance units
+<div class="buttons">
+<button class="openModal" data-target="q3">Q3</button>
+<button class="openModal" data-target="s3">Solution</button>
+
+<button class="openModal" data-target="q4">Q4</button>
+<button class="openModal" data-target="s4">Solution</button>
+</div>
+</li>
+
+<li class="topic">Find percentage of amount
+<div class="buttons">
+<button class="openModal" data-target="q5">Q5</button>
+<button class="openModal" data-target="s5">Solution</button>
+</div>
+</li>
+
+<li class="topic">Percentage increase and decrease
+<div class="buttons">
+<button class="openModal" data-target="q6">Q6</button>
+<button class="openModal" data-target="s6">Solution</button>
+</div>
+</li>
+
+<li class="topic">Index laws
+<div class="buttons">
+<button class="openModal" data-target="q7">Q7</button>
+<button class="openModal" data-target="s7">Solution</button>
+</div>
+</li>
+
+<li class="topic">Simultaneous equations
+<div class="buttons">
+<button class="openModal" data-target="q8">Q8</button>
+<button class="openModal" data-target="s8">Solution</button>
+
+<button class="openModal" data-target="q9">Q9</button>
+<button class="openModal" data-target="s9">Solution</button>
+</div>
+</li>
+
+<li class="topic">Rounding
+<div class="buttons">
+<button class="openModal" data-target="q10">Q10</button>
+<button class="openModal" data-target="s10">Solution</button>
+</div>
+</li>
+
+<li class="topic">More topics
+<div class="buttons">
+<!-- Q11–Q30 buttons -->
+<script>
+for(let i=11;i<=30;i++){
+document.write(`
+<button class="openModal" data-target="q${i}">Q${i}</button>
+<button class="openModal" data-target="s${i}">Solution</button>
+`);
+}
+</script>
+</div>
+</li>
+
 </ul>
 
-<!-- Example modal Q1 -->
-<div id="modalQ1" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <p>A train journey lasts 2 hours 36 minutes. Write the total time in hours.</p>
-    <input type="text" id="q1" placeholder="Answer">
-    <button class="check" onclick="checkNumber('q1',2.6,'r1')">Check</button>
-    <span id="r1"></span>
-  </div>
+<!-- QUESTIONS AUTO -->
+<script>
+for(let i=1;i<=30;i++){
+document.write(`
+<div id="q${i}" class="modal">
+<div class="modal-content">
+<span class="close">&times;</span>
+
+<p>Question ${i} goes here...</p>
+
+<input id="a${i}" placeholder="Answer">
+<button onclick="check('a${i}',0,'r${i}')">Check</button>
+<span id="r${i}"></span>
+
+</div>
 </div>
 
-<!-- Example modal Q2 with a & b -->
-<div id="modalQ2" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <p>Maria ran for 1 hour 42 minutes 30 seconds.</p>
-    <p>a) Write the total time in hours.</p>
-    <input type="text" id="q2a" placeholder="Answer a">
-    <button class="check" onclick="checkNumber('q2a',1.7083,'r2a')">Check</button>
-    <span id="r2a"></span>
-    <p>b) Calculate calories burned using C=480t.</p>
-    <input type="text" id="q2b" placeholder="Answer b">
-    <button class="check" onclick="checkNumber('q2b',820,'r2b')">Check</button>
-    <span id="r2b"></span>
-  </div>
+<div id="s${i}" class="modal">
+<div class="modal-content">
+<span class="close">&times;</span>
+<img src="solutions-1/q${i}.png" class="solution-image">
 </div>
-
-<!-- Example solution modals -->
-<div id="solution1" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <img src="solutions-1/q1.png" alt="Solution 1" class="solution-image">
-  </div>
 </div>
+`);
+}
+</script>
 
-<div id="solution2" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <img src="solutions-1/q2.png" alt="Solution 2" class="solution-image">
-  </div>
+<div class="back">
+<a href="sl-ai.html">⬅ Back to SL AI</a>
 </div>
 
 <script>
-// Open modal and reset inputs
-document.querySelectorAll('.openModal').forEach(button => {
-  button.addEventListener('click', () => {
-    const modal = document.getElementById(button.dataset.target);
-    modal.style.display = 'block';
-    modal.querySelectorAll('input').forEach(input => input.value = '');
-    modal.querySelectorAll('span').forEach(span => span.textContent = '');
-  });
-});
 
-// Close modal on × click
-document.querySelectorAll('.close').forEach(span => {
-  span.addEventListener('click', () => {
-    span.closest('.modal').style.display = 'none';
-  });
-});
-
-// Close modal when clicking outside
-window.addEventListener('click', event => {
-  if (event.target.classList.contains('modal')) {
-    event.target.style.display = 'none';
-  }
-});
-
-// Check answer function
-function checkNumber(inputId, correct, resultId) {
-  const value = parseFloat(document.getElementById(inputId).value);
-  const span = document.getElementById(resultId);
-  if (!isNaN(value) && Math.abs(value - correct) < 0.01) {
-    span.textContent = '✅';
-    span.style.color = 'green';
-  } else {
-    span.textContent = '❌';
-    span.style.color = 'red';
-  }
+// OPEN + RESET
+document.addEventListener("click", e=>{
+if(e.target.classList.contains("openModal")){
+let m=document.getElementById(e.target.dataset.target);
+m.style.display="block";
+m.querySelectorAll("input").forEach(i=>i.value="");
+m.querySelectorAll("span").forEach(s=>s.textContent="");
 }
+});
+
+// CLOSE
+document.addEventListener("click", e=>{
+if(e.target.classList.contains("close")||e.target.classList.contains("modal")){
+e.target.closest(".modal").style.display="none";
+}
+});
+
+// CHECK
+function check(id,correct,res){
+let v=parseFloat(document.getElementById(id).value);
+let r=document.getElementById(res);
+if(!isNaN(v)&&Math.abs(v-correct)<0.01){
+r.textContent="✅"; r.style.color="green";
+}else{
+r.textContent="❌"; r.style.color="red";
+}
+}
+
 </script>
 
 </body>
