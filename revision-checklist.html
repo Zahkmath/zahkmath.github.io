@@ -1,54 +1,90 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Question Example</title>
+<title>Revision Checklist</title>
 
 <style>
-body { font-family: Arial; text-align:center; background:#f4f6f9; }
+body { font-family: Arial; margin:0; background:#f4f6f9; text-align:center; }
 
-button {
-  padding:12px 18px;
+/* HEADER */
+header {
   background:#1e3a8a;
   color:white;
+  padding:20px;
+}
+
+/* BUTTONS */
+button {
+  padding:10px 15px;
   border:none;
   border-radius:10px;
+  background:#1e3a8a;
+  color:white;
   cursor:pointer;
+  margin:5px;
 }
 
 button:hover { background:#163080; }
 
-/* Modal */
+/* INPUT + CHECK INLINE */
+.answer-row {
+  display:flex;
+  gap:10px;
+  margin-top:10px;
+}
+
+.answer-row input {
+  flex:1;
+  padding:8px;
+}
+
+/* MODAL */
 .modal {
   display:none;
   position:fixed;
-  top:0; left:0;
   width:100%;
   height:100%;
   background:rgba(0,0,0,0.6);
+  top:0; left:0;
 }
 
 .modal-content {
   background:white;
-  margin:10% auto;
+  margin:8% auto;
   padding:20px;
   width:90%;
-  max-width:500px;
-  border-radius:10px;
+  max-width:600px;
+  border-radius:12px;
   position:relative;
   text-align:left;
 }
 
+/* CLOSE BUTTON */
 .close {
   position:absolute;
-  right:10px;
-  top:5px;
-  font-size:25px;
+  right:15px;
+  top:10px;
+  font-size:28px;
   cursor:pointer;
 }
 
-input {
-  padding:8px;
-  margin-top:10px;
+/* IMAGE */
+.solution-image {
+  max-width:100%;
+  max-height:70vh;
+  display:block;
+  margin:auto;
+}
+
+/* BACK */
+.back {
+  margin:30px;
+}
+
+.back a {
+  text-decoration:none;
+  color:#555;
+  font-weight:bold;
 }
 
 </style>
@@ -56,40 +92,63 @@ input {
 
 <body>
 
-<h2>Revision Questions</h2>
+<header>
+<h1>Revision Checklist Questions</h1>
+</header>
 
-<!-- BUTTON -->
-<button onclick="openModal()">Question 1</button>
+<br>
 
-<!-- MODAL -->
+<!-- BUTTONS -->
+<button onclick="openModal('q1')">Question 1</button>
+<button onclick="openModal('s1')">Solution 1</button>
+
+<!-- QUESTION MODAL -->
 <div id="q1" class="modal">
   <div class="modal-content">
-    <span class="close" onclick="closeModal()">&times;</span>
+    <span class="close" onclick="closeModal('q1')">&times;</span>
 
     <p>A train journey lasts 2 hours 36 minutes. Write the total time in hours.</p>
 
-    <input id="answer" placeholder="Enter answer">
+    <div class="answer-row">
+      <input id="answer1" placeholder="Enter answer">
+      <button onclick="check()">Check</button>
+    </div>
 
-    <br>
-    <button onclick="check()">Check</button>
-
-    <span id="result"></span>
+    <span id="result1"></span>
 
   </div>
 </div>
 
+<!-- SOLUTION MODAL -->
+<div id="s1" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('s1')">&times;</span>
+    <img src="solutions-1/q1.png" class="solution-image">
+  </div>
+</div>
+
+<!-- BACK -->
+<div class="back">
+  <a href="sl-ai.html">⬅ Back to SL AI</a>
+</div>
+
 <script>
 
-// OPEN
-function openModal(){
-  document.getElementById("q1").style.display="block";
-  document.getElementById("answer").value="";
-  document.getElementById("result").textContent="";
+// OPEN MODAL + RESET
+function openModal(id){
+  let m=document.getElementById(id);
+  m.style.display="block";
+
+  let input=document.getElementById("answer1");
+  let result=document.getElementById("result1");
+
+  if(input) input.value="";
+  if(result) result.textContent="";
 }
 
 // CLOSE
-function closeModal(){
-  document.getElementById("q1").style.display="none";
+function closeModal(id){
+  document.getElementById(id).style.display="none";
 }
 
 // CLOSE OUTSIDE
@@ -99,10 +158,10 @@ window.onclick=function(e){
   }
 }
 
-// CHECK ANSWER
+// CHECK
 function check(){
-  let value=parseFloat(document.getElementById("answer").value);
-  let result=document.getElementById("result");
+  let value=parseFloat(document.getElementById("answer1").value);
+  let result=document.getElementById("result1");
 
   if(!isNaN(value) && Math.abs(value-2.6)<0.01){
     result.textContent=" ✅";
