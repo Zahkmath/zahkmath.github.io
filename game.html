@@ -1,117 +1,185 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Crack the Code</title>
+    <title>Code Breaker</title>
     <style>
         body {
             text-align: center;
             font-family: Arial;
-            background-color: #0f172a;
-            color: #e2e8f0;
+            background-color: #dbeafe; /* light blue */
+            color: #1e293b;
             padding: 40px;
         }
 
         .box {
             max-width: 600px;
             margin: auto;
-            background: #1e293b;
+            background: #ffffff;
             padding: 25px;
             border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        input {
+            padding: 10px;
+            font-size: 18px;
+            width: 150px;
+            text-align: center;
+            border-radius: 6px;
+            border: 1px solid #ccc;
         }
 
         button {
-            display: block;
-            width: 100%;
-            margin: 10px 0;
-            padding: 10px;
+            padding: 10px 20px;
+            margin: 10px;
             border: none;
             border-radius: 6px;
-            background: #334155;
+            background: #60a5fa;
             color: white;
             cursor: pointer;
         }
 
         button:hover {
-            background: #475569;
+            background: #3b82f6;
         }
 
-        .success { color: #22c55e; }
-        .error { color: #ef4444; }
+        .success { color: #16a34a; }
+        .error { color: #dc2626; }
     </style>
 </head>
 
 <body>
 
 <div class="box">
-    <h1>🔐 Crack the Code</h1>
-    <div id="game"></div>
+    <h1>🔐 Code Breaker</h1>
+    <h2 id="levelTitle"></h2>
+    <p id="instructions"></p>
+
+    <input id="guessInput" placeholder="Enter code">
+    <br>
+    <button onclick="checkGuess()">Submit Guess</button>
+
     <p id="feedback"></p>
+    <div id="history"></div>
+
     <br>
     <a href="index.html">⬅ Back to Home</a>
 </div>
 
 <script>
-let level = 0;
 
-const levels = [
-    {
-        question: "3-digit code using 1, 2, 3 (repetition allowed).",
-        answers: ["9", "27", "6", "12"],
-        correct: "27"
-    },
-    {
-        question: "3-digit code using 1–4 (no repetition).",
-        answers: ["12", "24", "64", "16"],
-        correct: "24"
-    },
-    {
-        question: "4-digit code using 1–5, must start even, no repetition.",
-        answers: ["24", "48", "60", "120"],
-        correct: "48"
-    },
-    {
-        question: "5-digit code using 0–5 (repetition allowed).",
-        answers: ["120", "3125", "7776", "625"],
-        correct: "7776"
-    }
-];
+let level = 1;
+let secret = "";
+let digitPool = [];
+let length = 3;
 
-function loadLevel() {
-    const game = document.getElementById("game");
+function startLevel() {
+    const title = document.getElementById("levelTitle");
+    const instructions = document.getElementById("instructions");
+    const history = document.getElementById("history");
     const feedback = document.getElementById("feedback");
 
+    history.innerHTML = "";
     feedback.textContent = "";
 
-    if (level >= levels.length) {
-        game.innerHTML = "<h2 class='success'>🎉 You unlocked everything!</h2>";
+    if (level === 1) {
+        digitPool = ["1","2","3"];
+        length = 3;
+        instructions.textContent = "Level 1: Use digits 1–3. No repeats.";
+    } 
+    else if (level === 2) {
+        digitPool = ["1","2","3","4"];
+        length = 4;
+        instructions.textContent = "Level 2: Use digits 1–4. No repeats.";
+    } 
+    else if (level === 3) {
+        digitPool = ["0","1","2","3","4","5","6","7","8","9"];
+        length = 4;
+        instructions.textContent = "Final Level: Use digits 0–9. No repeats.";
+    } 
+    else {
+        title.textContent = "🎉 You cracked all codes!";
+        instructions.textContent = "";
+        document.getElementById("guessInput").style.display = "none";
         return;
     }
 
-    let html = `<h2>Level ${level + 1}</h2>`;
-    html += `<p>${levels[level].question}</p>`;
+    title.textContent = "Level " + level;
 
-    levels[level].answers.forEach(a => {
-        html += `<button onclick="checkAnswer('${a}')">${a}</button>`;
-    });
-
-    game.innerHTML = html;
+    generateCode();
 }
 
-function checkAnswer(answer) {
-    const feedback = document.getElementById("feedback");
+function generateCode() {
+    let pool = [...digitPool];
+    secret = "";
 
-    if (answer === levels[level].correct) {
-        feedback.textContent = "✅ Access Granted!";
+    for (let i = 0; i < length; i++) {
+        let index = Math.floor(Math.random() * pool.length);
+        secret += pool[index];
+        pool.splice(index, 1); // remove used digit (no repeats)
+    }
+}
+
+function hasDuplicates(str) {
+    return new Set(str).size !== str.length;
+}
+
+function checkGuess() {
+    const input = document.getElementById("guessInput");
+    const guess = input.value;
+    const feedback = document.getElementById("feedback");
+    const history = document.getElementById("history");
+
+    // validation
+    if (guess.length !== length) {
+        feedback.textContent = "❌ Wrong length!";
+        feedback.className = "error";
+        return;
+    }
+
+    if (hasDuplicates(guess)) {
+        feedback.textContent = "❌ No repeated digits allowed!";
+        feedback.className = "error";
+        return;
+    }
+
+    for (let char of guess) {
+        if (!digitPool.includes(char)) {
+            feedback.textContent = "❌ Invalid digits used!";
+            feedback.className = "error";
+            return;
+        }
+    }
+
+    let correctPlace = 0;
+    let correctDigit = 0;
+
+    for (let i = 0; i < length; i++) {
+        if (guess[i] === secret[i]) {
+            correctPlace++;
+        } else if (secret.includes(guess[i])) {
+            correctDigit++;
+        }
+    }
+
+    history.innerHTML += `<p>${guess} → ${correctPlace} right place, ${correctDigit} wrong place</p>`;
+
+    if (guess === secret) {
+        feedback.textContent = "✅ Code cracked!";
         feedback.className = "success";
+
         level++;
-        setTimeout(loadLevel, 1000);
+        setTimeout(startLevel, 1500);
     } else {
         feedback.textContent = "❌ Try again!";
         feedback.className = "error";
     }
+
+    input.value = "";
 }
 
-loadLevel();
+startLevel();
+
 </script>
 
 </body>
