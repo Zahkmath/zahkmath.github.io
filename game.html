@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crack the Code</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial;
+            background-color: #0f172a;
+            color: #e2e8f0;
+            padding: 40px;
+        }
+
+        .box {
+            max-width: 600px;
+            margin: auto;
+            background: #1e293b;
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            background: #334155;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #475569;
+        }
+
+        .success { color: #22c55e; }
+        .error { color: #ef4444; }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+    <h1>🔐 Crack the Code</h1>
+    <div id="game"></div>
+    <p id="feedback"></p>
+    <br>
+    <a href="index.html">⬅ Back to Home</a>
+</div>
+
+<script>
+let level = 0;
+
+const levels = [
+    {
+        question: "3-digit code using 1, 2, 3 (repetition allowed).",
+        answers: ["9", "27", "6", "12"],
+        correct: "27"
+    },
+    {
+        question: "3-digit code using 1–4 (no repetition).",
+        answers: ["12", "24", "64", "16"],
+        correct: "24"
+    },
+    {
+        question: "4-digit code using 1–5, must start even, no repetition.",
+        answers: ["24", "48", "60", "120"],
+        correct: "48"
+    },
+    {
+        question: "5-digit code using 0–5 (repetition allowed).",
+        answers: ["120", "3125", "7776", "625"],
+        correct: "7776"
+    }
+];
+
+function loadLevel() {
+    const game = document.getElementById("game");
+    const feedback = document.getElementById("feedback");
+
+    feedback.textContent = "";
+
+    if (level >= levels.length) {
+        game.innerHTML = "<h2 class='success'>🎉 You unlocked everything!</h2>";
+        return;
+    }
+
+    let html = `<h2>Level ${level + 1}</h2>`;
+    html += `<p>${levels[level].question}</p>`;
+
+    levels[level].answers.forEach(a => {
+        html += `<button onclick="checkAnswer('${a}')">${a}</button>`;
+    });
+
+    game.innerHTML = html;
+}
+
+function checkAnswer(answer) {
+    const feedback = document.getElementById("feedback");
+
+    if (answer === levels[level].correct) {
+        feedback.textContent = "✅ Access Granted!";
+        feedback.className = "success";
+        level++;
+        setTimeout(loadLevel, 1000);
+    } else {
+        feedback.textContent = "❌ Try again!";
+        feedback.className = "error";
+    }
+}
+
+loadLevel();
+</script>
+
+</body>
+</html>
