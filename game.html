@@ -6,7 +6,7 @@
         body {
             text-align: center;
             font-family: Arial;
-            background-color: #dbeafe; /* light blue */
+            background-color: #dbeafe;
             color: #1e293b;
             padding: 40px;
         }
@@ -31,7 +31,7 @@
 
         button {
             padding: 10px 20px;
-            margin: 10px;
+            margin: 8px;
             border: none;
             border-radius: 6px;
             background: #60a5fa;
@@ -57,10 +57,12 @@
 
     <input id="guessInput" placeholder="Enter code">
     <br>
+
     <button onclick="checkGuess()">Submit Guess</button>
+    <button onclick="goBack()">⬅ Back Level</button>
 
     <p id="feedback"></p>
-    <div id="history"></div>
+    <p id="attempts"></p>
 
     <br>
     <a href="index.html">⬅ Back to Home</a>
@@ -72,15 +74,19 @@ let level = 1;
 let secret = "";
 let digitPool = [];
 let length = 3;
+let tries = 0;
 
 function startLevel() {
     const title = document.getElementById("levelTitle");
     const instructions = document.getElementById("instructions");
-    const history = document.getElementById("history");
     const feedback = document.getElementById("feedback");
+    const attempts = document.getElementById("attempts");
 
-    history.innerHTML = "";
     feedback.textContent = "";
+    attempts.textContent = "";
+    tries = 0;
+
+    document.getElementById("guessInput").style.display = "inline";
 
     if (level === 1) {
         digitPool = ["1","2","3"];
@@ -116,8 +122,10 @@ function generateCode() {
     for (let i = 0; i < length; i++) {
         let index = Math.floor(Math.random() * pool.length);
         secret += pool[index];
-        pool.splice(index, 1); // remove used digit (no repeats)
+        pool.splice(index, 1);
     }
+
+    console.log("Secret (for testing):", secret);
 }
 
 function hasDuplicates(str) {
@@ -128,9 +136,8 @@ function checkGuess() {
     const input = document.getElementById("guessInput");
     const guess = input.value;
     const feedback = document.getElementById("feedback");
-    const history = document.getElementById("history");
+    const attempts = document.getElementById("attempts");
 
-    // validation
     if (guess.length !== length) {
         feedback.textContent = "❌ Wrong length!";
         feedback.className = "error";
@@ -138,44 +145,44 @@ function checkGuess() {
     }
 
     if (hasDuplicates(guess)) {
-        feedback.textContent = "❌ No repeated digits allowed!";
+        feedback.textContent = "❌ No repeated digits!";
         feedback.className = "error";
         return;
     }
 
     for (let char of guess) {
         if (!digitPool.includes(char)) {
-            feedback.textContent = "❌ Invalid digits used!";
+            feedback.textContent = "❌ Invalid digits!";
             feedback.className = "error";
             return;
         }
     }
 
-    let correctPlace = 0;
-    let correctDigit = 0;
-
-    for (let i = 0; i < length; i++) {
-        if (guess[i] === secret[i]) {
-            correctPlace++;
-        } else if (secret.includes(guess[i])) {
-            correctDigit++;
-        }
-    }
-
-    history.innerHTML += `<p>${guess} → ${correctPlace} right place, ${correctDigit} wrong place</p>`;
+    tries++;
 
     if (guess === secret) {
-        feedback.textContent = "✅ Code cracked!";
+        feedback.textContent = "✅ Correct code!";
         feedback.className = "success";
 
-        level++;
-        setTimeout(startLevel, 1500);
+        setTimeout(() => {
+            level++;
+            startLevel();
+        }, 1200);
     } else {
-        feedback.textContent = "❌ Try again!";
+        feedback.textContent = "❌ Incorrect!";
         feedback.className = "error";
     }
 
+    attempts.textContent = "Attempts: " + tries;
+
     input.value = "";
+}
+
+function goBack() {
+    if (level > 1) {
+        level--;
+        startLevel();
+    }
 }
 
 startLevel();
