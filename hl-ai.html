@@ -3,6 +3,123 @@
 <head><title>Coming Soon</title></head>
 <body style="text-align:center; font-family:Arial;">
 <h1>Coming Soon</h1>
+  export default function ZScoreComparison() {
+  const testA = {
+    mean: 50,
+    sd: 10,
+    score: 70,
+    z: (70 - 50) / 10,
+  };
+
+  const testB = {
+    mean: 80,
+    sd: 2,
+    score: 84,
+    z: (84 - 80) / 2,
+  };
+
+  const scalePosition = (score, mean, sd) => {
+    const min = mean - 4 * sd;
+    const max = mean + 4 * sd;
+    return ((score - min) / (max - min)) * 100;
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-100 p-8 text-gray-900">
+      <div className="max-w-5xl mx-auto space-y-8">
+        <div className="bg-white rounded-3xl shadow-xl p-8">
+          <h1 className="text-4xl font-bold mb-4">Why We Standardize Scores</h1>
+          <p className="text-lg text-gray-700">
+            Two students took different math tests. Their raw scores look different,
+            but z-scores help us compare them fairly.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="bg-white rounded-3xl shadow-lg p-6">
+            <h2 className="text-2xl font-semibold mb-4">Test A</h2>
+
+            <div className="space-y-2 text-lg">
+              <p>Average score (μ) = 50</p>
+              <p>Standard deviation (σ) = 10</p>
+              <p>Alex's score (x) = 70</p>
+            </div>
+
+            <div className="mt-6 p-4 bg-blue-50 rounded-2xl text-xl font-mono overflow-x-auto">
+              z = (70 - 50) / 10 = 2
+            </div>
+
+            <div className="mt-6">
+              <div className="relative h-6 bg-gray-200 rounded-full overflow-hidden">
+                <div
+                  className="absolute top-0 h-full bg-blue-500"
+                  style={{ width: `${scalePosition(testA.score, testA.mean, testA.sd)}%` }}
+                />
+              </div>
+
+              <div className="flex justify-between text-sm mt-2 text-gray-600">
+                <span>{testA.mean - 4 * testA.sd}</span>
+                <span>Average: {testA.mean}</span>
+                <span>{testA.mean + 4 * testA.sd}</span>
+              </div>
+            </div>
+
+            <p className="mt-4 text-green-700 font-semibold text-lg">
+              Alex is 2 standard deviations above average.
+            </p>
+          </div>
+
+          <div className="bg-white rounded-3xl shadow-lg p-6">
+            <h2 className="text-2xl font-semibold mb-4">Test B</h2>
+
+            <div className="space-y-2 text-lg">
+              <p>Average score (μ) = 80</p>
+              <p>Standard deviation (σ) = 2</p>
+              <p>Mia's score (x) = 84</p>
+            </div>
+
+            <div className="mt-6 p-4 bg-purple-50 rounded-2xl text-xl font-mono overflow-x-auto">
+              z = (84 - 80) / 2 = 2
+            </div>
+
+            <div className="mt-6">
+              <div className="relative h-6 bg-gray-200 rounded-full overflow-hidden">
+                <div
+                  className="absolute top-0 h-full bg-purple-500"
+                  style={{ width: `${scalePosition(testB.score, testB.mean, testB.sd)}%` }}
+                />
+              </div>
+
+              <div className="flex justify-between text-sm mt-2 text-gray-600">
+                <span>{testB.mean - 4 * testB.sd}</span>
+                <span>Average: {testB.mean}</span>
+                <span>{testB.mean + 4 * testB.sd}</span>
+              </div>
+            </div>
+
+            <p className="mt-4 text-green-700 font-semibold text-lg">
+              Mia is also 2 standard deviations above average.
+            </p>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-3xl shadow-xl p-8">
+          <h2 className="text-3xl font-bold mb-4">Main Idea</h2>
+
+          <p className="text-lg leading-relaxed text-gray-700">
+            Even though Alex scored 70 and Mia scored 84, both students performed
+            equally well compared to their own class averages.
+          </p>
+
+          <div className="mt-6 p-6 bg-green-50 rounded-2xl text-xl font-semibold text-green-800">
+            Z-scores measure how unusual or impressive a score is relative to everyone else.
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 <a href="index.html">⬅ Back to Home</a>
 </body>
 </html>
